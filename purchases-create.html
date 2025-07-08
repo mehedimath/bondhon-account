@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Purchase - Bondhon Enterprise</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Styles (Same as Dashboard) -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 250px;
+            padding: 70px 0 0;
+            background-color: #343a40;
+            color: #fff;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar .nav-link {
+            color: #adb5bd;
+            padding: 10px 20px;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            color: #fff;
+            background-color: #495057;
+        }
+
+        .sidebar .nav-link .fa {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            padding-top: 70px;
+        }
+
+        .navbar {
+            z-index: 1030;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+            <div class="ms-auto text-white"><i class="fa fa-user-circle"></i> Admin</div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <nav class="nav flex-column">
+            <!-- Dashboard Link -->
+            <a class="nav-link" href="dashboard.html"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+
+            <!-- Sales Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="false"
+                aria-controls="salesCollapse">
+                <i class="fa fa-file-invoice-dollar"></i> Sales <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="salesCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="sales-create.html">New Invoice</a>
+                    <a class="nav-link" href="sales-manage-invoices.html">Invoice List</a>
+                    <a class="nav-link" href="sales-return-create.html">Process Return</a>
+                </nav>
+            </div>
+
+            <!-- Purchases Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="false"
+                aria-controls="purchasesCollapse">
+                <i class="fa fa-shopping-cart"></i> Purchases <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="purchasesCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="purchases-create.html">New Purchase</a>
+                    <!-- In a full app, you'd have a separate purchase list page -->
+                    <a class="nav-link" href="purchases-create.html">Purchase List</a>
+                </nav>
+            </div>
+
+            <!-- Inventory Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="false"
+                aria-controls="inventoryCollapse">
+                <i class="fa fa-box-open"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="inventoryCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="inventory-products.html">Product List</a>
+                    <a class="nav-link" href="items-manage.html">Item Categories</a>
+                    <a class="nav-link" href="brands-manage.html">Brands</a>
+                </nav>
+            </div>
+
+            <!-- Contacts Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="false"
+                aria-controls="contactsCollapse">
+                <i class="fa fa-users"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="contactsCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="customers-list.html">Customers</a>
+                    <a class="nav-link" href="suppliers-manage.html">Suppliers</a>
+                </nav>
+            </div>
+
+            <!-- Finance Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="false"
+                aria-controls="financeCollapse">
+                <i class="fa fa-wallet"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="financeCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="expenses-manage.html">Manage Expenses</a>
+                </nav>
+            </div>
+
+            <!-- Reports Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false"
+                aria-controls="reportsCollapse">
+                <i class="fa fa-chart-pie"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="reportsCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="reports-sales.html">Sales Report</a>
+                    <a class="nav-link" href="reports-stock-ledger.html">Stock Ledger</a>
+                    <a class="nav-link" href="reports-customer-dues.html">Customer Dues</a>
+                </nav>
+            </div>
+
+            <!-- Settings Link -->
+            <a class="nav-link" href="settings.html"><i class="fa fa-cog"></i> Settings</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">Record New Purchase</h1>
+                <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fa fa-list me-1"></i> View All
+                    Purchases</a>
+            </div>
+
+            <div class="card">
+                <div class="card-body p-4">
+                    <!-- Purchase Header -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="supplierName" class="form-label">Supplier Name *</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="supplierName" list="supplier-list"
+                                    placeholder="Select or type a supplier" value="Saleha Electronics">
+                                <datalist id="supplier-list">
+                                    <option value="Saleha Electronics">
+                                    <option value="Electro Mart (GREE LTD)">
+                                    <option value="Bismillah Trade International">
+                                    <option value="M/S, Mojumder Enterprise">
+                                </datalist>
+                                <!-- NEW Manage Button -->
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#manageSupplierModal">Manage</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="purchaseDate" class="form-label">Purchase Date *</label>
+                            <input type="date" class="form-control" id="purchaseDate" value="2025-02-23">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="purchaseRef" class="form-label">Reference / Bill #</label>
+                            <input type="text" class="form-control" id="purchaseRef" placeholder="Optional">
+                        </div>
+                    </div>
+
+                    <!-- Purchase Items Table -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="purchase-items-table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 30%;">Purchase Item Model</th>
+                                    <th style="width: 25%;">Item Description</th>
+                                    <th style="width: 10%;">Qty</th>
+                                    <th style="width: 15%;">Purchase Rate</th>
+                                    <th style="width: 15%;" class="text-end">Amount</th>
+                                    <th style="width: 5%;" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="purchaseItemsTbody">
+                                <tr>
+                                    <td><input type="text" class="form-control" value="WFC-3F5-GDEL-XX"></td>
+                                    <td><input type="text" class="form-control" value="REFRIGERATOR | WALTON"></td>
+                                    <td><input type="number" class="form-control item-qty" value="2" min="1"></td>
+                                    <td><input type="number" class="form-control item-rate" value="26044"></td>
+                                    <td class="text-end align-middle fw-bold item-amount">৳ 52,088.00</td>
+                                    <td class="text-center align-middle"><button
+                                            class="btn btn-sm btn-danger delete-row-btn"><i
+                                                class="fa fa-trash"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" value="WFC-3X7-GDEL-DD (INVERTER)"></td>
+                                    <td><input type="text" class="form-control" value="REFRIGERATOR | WALTON"></td>
+                                    <td><input type="number" class="form-control item-qty" value="2" min="1"></td>
+                                    <td><input type="number" class="form-control item-rate" value="39460"></td>
+                                    <td class="text-end align-middle fw-bold item-amount">৳ 78,920.00</td>
+                                    <td class="text-center align-middle"><button
+                                            class="btn btn-sm btn-danger delete-row-btn"><i
+                                                class="fa fa-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-plus me-1"></i> Add Item
+                        Row</button>
+
+                    <!-- Purchase Footer -->
+                    <div class="row mt-4">
+                        <div class="col-lg-7"><label for="remarks" class="form-label">Remarks</label><textarea
+                                class="form-control" id="remarks" rows="3"
+                                placeholder="Add any notes for this purchase..."></textarea></div>
+                        <div class="col-lg-5">
+                            <div class="d-flex justify-content-between h4 mb-3"><span>TOTAL AMOUNT:</span><span
+                                    class="fw-bold" id="grandTotalSpan">৳ 131,008.00</span></div>
+                            <div class="d-flex justify-content-between mb-2"><label for="paidAmount"
+                                    class="col-form-label">Paid Amount:</label><input type="number"
+                                    class="form-control form-control-sm text-end" id="paidAmount" style="width: 120px;"
+                                    value="0"></div>
+                            <div class="d-flex justify-content-between text-danger fw-bold h5"><span>AMOUNT
+                                    DUE:</span><span id="amountDueSpan">৳ 131,008.00</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="row mt-4">
+                        <div class="col-12 text-end"><button class="btn btn-success" id="recordPurchaseBtn"><i
+                                    class="fa fa-check-circle me-1"></i> Record Purchase</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- NEW: Manage Supplier Modal -->
+    <div class="modal fade" id="manageSupplierModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Manage Suppliers</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-2 mb-3 align-items-end" id="addSupplierForm">
+                        <div class="col-md-5"><label class="form-label">New Supplier Name</label><input type="text"
+                                id="newSupplierNameInput" class="form-control" placeholder="e.g., RFL Electronics"
+                                required></div>
+                        <div class="col-md-5"><label class="form-label">Contact/Details</label><input type="text"
+                                id="newSupplierDetailsInput" class="form-control"></div>
+                        <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">Add</button></div>
+                    </form>
+                    <hr>
+                    <h6>Existing Suppliers</h6>
+                    <ul class="list-group" id="existingSuppliersList">
+                        <!-- Supplier list will be populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Core Purchase Form Logic ---
+            const addItemBtn = document.getElementById('addItemBtn');
+            const purchaseItemsTbody = document.getElementById('purchaseItemsTbody');
+            function updateTotals() {
+                let grandTotal = 0;
+                purchaseItemsTbody.querySelectorAll('tr').forEach(row => {
+                    const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
+                    const rate = parseFloat(row.querySelector('.item-rate').value) || 0;
+                    const lineTotal = qty * rate;
+                    row.querySelector('.item-amount').textContent = `৳ ${lineTotal.toFixed(2)}`;
+                    grandTotal += lineTotal;
+                });
+                const paidAmount = parseFloat(document.getElementById('paidAmount').value) || 0;
+                document.getElementById('grandTotalSpan').textContent = `৳ ${grandTotal.toFixed(2)}`;
+                document.getElementById('amountDueSpan').textContent = `৳ ${(grandTotal - paidAmount).toFixed(2)}`;
+            }
+            addItemBtn.addEventListener('click', function () {
+                const newRowHtml = `<tr><td><input type="text" class="form-control" placeholder="Item Model"></td><td><input type="text" class="form-control" placeholder="Item Name | Brand"></td><td><input type="number" class="form-control item-qty" value="1" min="1"></td><td><input type="number" class="form-control item-rate" value="0" min="0"></td><td class="text-end align-middle fw-bold item-amount">৳ 0.00</td><td class="text-center align-middle"><button class="btn btn-sm btn-danger delete-row-btn"><i class="fa fa-trash"></i></button></td></tr>`;
+                purchaseItemsTbody.insertAdjacentHTML('beforeend', newRowHtml);
+            });
+            purchaseItemsTbody.addEventListener('click', function (e) {
+                if (e.target.closest('.delete-row-btn')) { e.target.closest('tr').remove(); updateTotals(); }
+            });
+            purchaseItemsTbody.addEventListener('input', e => { if (e.target.matches('.item-qty, .item-rate')) updateTotals(); });
+            document.getElementById('paidAmount').addEventListener('input', updateTotals);
+            document.getElementById('recordPurchaseBtn').addEventListener('click', () => { alert('Purchase Recorded Successfully!'); });
+            updateTotals();
+
+            // --- Manage Suppliers Modal Logic ---
+            const supplierDataList = document.getElementById('supplier-list');
+            const existingSuppliersList = document.getElementById('existingSuppliersList');
+            const addSupplierForm = document.getElementById('addSupplierForm');
+
+            function populateSupplierModal() {
+                existingSuppliersList.innerHTML = '';
+                Array.from(supplierDataList.options).forEach(option => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    li.textContent = option.value;
+                    li.innerHTML += ` <button class="btn btn-sm btn-outline-danger delete-supplier-btn" data-supplier="${option.value}"><i class="fa fa-trash"></i></button>`;
+                    existingSuppliersList.appendChild(li);
+                });
+            }
+
+            document.querySelector('[data-bs-target="#manageSupplierModal"]').addEventListener('click', populateSupplierModal);
+
+            addSupplierForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newNameInput = document.getElementById('newSupplierNameInput');
+                const newName = newNameInput.value.trim();
+                if (newName) {
+                    const newOption = document.createElement('option');
+                    newOption.value = newName;
+                    supplierDataList.appendChild(newOption);
+                    populateSupplierModal(); // Refresh the list
+                    newNameInput.value = '';
+                    document.getElementById('newSupplierDetailsInput').value = '';
+                }
+            });
+
+            existingSuppliersList.addEventListener('click', e => {
+                const deleteBtn = e.target.closest('.delete-supplier-btn');
+                if (deleteBtn) {
+                    const supplierToDelete = deleteBtn.dataset.supplier;
+                    if (confirm(`Are you sure you want to delete supplier: ${supplierToDelete}?`)) {
+                        Array.from(supplierDataList.options).forEach(opt => {
+                            if (opt.value === supplierToDelete) opt.remove();
+                        });
+                        populateSupplierModal(); // Refresh list after deletion
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

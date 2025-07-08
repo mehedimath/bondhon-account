@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Ledger Report - Bondhon Enterprise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Same CSS as previous pages */
+        body {
+            background-color: #f8f9fa
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 250px;
+            padding: 70px 0 0;
+            background-color: #343a40;
+            color: #fff;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar .nav-link {
+            color: #adb5bd;
+            padding: 10px 20px
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            color: #fff;
+            background-color: #495057
+        }
+
+        .sidebar .nav-link .fa {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            padding-top: 70px
+        }
+
+        .navbar {
+            z-index: 1030
+        }
+
+        .navbar-brand {
+            font-weight: 700
+        }
+
+        .brand-total-row {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid"><a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+            <div class="ms-auto text-white"><i class="fa fa-user-circle"></i> Admin</div>
+        </div>
+    </nav>
+    <div class="sidebar">
+        <nav class="nav flex-column">
+            <!-- Dashboard Link -->
+            <a class="nav-link" href="dashboard.html"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+
+            <!-- Sales Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="false"
+                aria-controls="salesCollapse">
+                <i class="fa fa-file-invoice-dollar"></i> Sales <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="salesCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="sales-create.html">New Invoice</a>
+                    <a class="nav-link" href="sales-manage-invoices.html">Invoice List</a>
+                    <a class="nav-link" href="sales-return-create.html">Process Return</a>
+                </nav>
+            </div>
+
+            <!-- Purchases Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="false"
+                aria-controls="purchasesCollapse">
+                <i class="fa fa-shopping-cart"></i> Purchases <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="purchasesCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="purchases-create.html">New Purchase</a>
+                    <!-- In a full app, you'd have a separate purchase list page -->
+                    <a class="nav-link" href="purchases-create.html">Purchase List</a>
+                </nav>
+            </div>
+
+            <!-- Inventory Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="false"
+                aria-controls="inventoryCollapse">
+                <i class="fa fa-box-open"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="inventoryCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="inventory-products.html">Product List</a>
+                    <a class="nav-link" href="items-manage.html">Item Categories</a>
+                    <a class="nav-link" href="brands-manage.html">Brands</a>
+                </nav>
+            </div>
+
+            <!-- Contacts Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="false"
+                aria-controls="contactsCollapse">
+                <i class="fa fa-users"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="contactsCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="customers-list.html">Customers</a>
+                    <a class="nav-link" href="suppliers-manage.html">Suppliers</a>
+                </nav>
+            </div>
+
+            <!-- Finance Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="false"
+                aria-controls="financeCollapse">
+                <i class="fa fa-wallet"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="financeCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="expenses-manage.html">Manage Expenses</a>
+                </nav>
+            </div>
+
+            <!-- Reports Menu (Collapsible) -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false"
+                aria-controls="reportsCollapse">
+                <i class="fa fa-chart-pie"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="reportsCollapse">
+                <nav class="nav flex-column ms-3">
+                    <a class="nav-link" href="reports-sales.html">Sales Report</a>
+                    <a class="nav-link" href="reports-stock-ledger.html">Stock Ledger</a>
+                    <a class="nav-link" href="reports-customer-dues.html">Customer Dues</a>
+                </nav>
+            </div>
+
+            <!-- Settings Link -->
+            <a class="nav-link" href="settings.html"><i class="fa fa-cog"></i> Settings</a>
+        </nav>
+    </div>
+    <main class="main-content">
+        <div class="container-fluid">
+            <h1 class="h3 mb-4">Stock Ledger Report</h1>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3"><label class="form-label">Start Date</label><input type="date"
+                                class="form-control" id="startDate" value="2025-02-24"></div>
+                        <div class="col-md-3"><label class="form-label">End Date</label><input type="date"
+                                class="form-control" id="endDate" value="2025-12-31"></div>
+                        <div class="col-md-4"><label class="form-label">Item / Category</label><select id="itemFilter"
+                                class="form-select">
+                                <option>All Items</option>
+                                <option>AC</option>
+                                <option>REFRIGERATOR</option>
+                                <option selected>WASHING MACHINE</option>
+                            </select></div>
+                        <div class="col-md-2"><button class="btn btn-primary w-100" id="generateReportBtn">Generate
+                                Report</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Statement of Stock For The Period of 24 February 2025 to 31 December 2025</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Brand</th>
+                                    <th>Item</th>
+                                    <th>Purchase Item Model</th>
+                                    <th class="text-end">Op. Stock</th>
+                                    <th class="text-end">Purchase</th>
+                                    <th class="text-end">Total Sales</th>
+                                    <th class="text-end">Sales Return</th>
+                                    <th class="text-end">Clos. Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- KONKA Group -->
+                                <tr>
+                                    <td>KONKA</td>
+                                    <td>WASHING MACHINE</td>
+                                    <td>KG80-12B13</td>
+                                    <td class="text-end">1</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">1</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">0</td>
+                                </tr>
+                                <tr class="brand-total-row">
+                                    <td><strong>KONKA Total</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-end"><strong>1</strong></td>
+                                    <td class="text-end"><strong>-</strong></td>
+                                    <td class="text-end"><strong>1</strong></td>
+                                    <td class="text-end"><strong>-</strong></td>
+                                    <td class="text-end"><strong>0</strong></td>
+                                </tr>
+                                <!-- SAMSUNG Group -->
+                                <tr>
+                                    <td>SAMSUNG</td>
+                                    <td>WASHING MACHINE</td>
+                                    <td>WA70M4300HP</td>
+                                    <td class="text-end">1</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">1</td>
+                                </tr>
+                                <tr class="brand-total-row">
+                                    <td><strong>SAMSUNG Total</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-end"><strong>1</strong></td>
+                                    <td class="text-end"><strong>-</strong></td>
+                                    <td class="text-end"><strong>-</strong></td>
+                                    <td class="text-end"><strong>-</strong></td>
+                                    <td class="text-end"><strong>1</strong></td>
+                                </tr>
+                                <!-- WALTON Group -->
+                                <tr>
+                                    <td>WALTON</td>
+                                    <td>WASHING MACHINE</td>
+                                    <td>WWM-ATG90</td>
+                                    <td class="text-end">1</td>
+                                    <td class="text-end">4</td>
+                                    <td class="text-end">3</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">2</td>
+                                </tr>
+                                <tr>
+                                    <td>WALTON</td>
+                                    <td>WASHING MACHINE</td>
+                                    <td>WWM-ATV80</td>
+                                    <td class="text-end">2</td>
+                                    <td class="text-end">2</td>
+                                    <td class="text-end">2</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">2</td>
+                                </tr>
+                                <tr>
+                                    <td>WALTON</td>
+                                    <td>WASHING MACHINE</td>
+                                    <td>WWM-TWG110</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">7</td>
+                                    <td class="text-end">1</td>
+                                    <td class="text-end">-</td>
+                                    <td class="text-end">6</td>
+                                </tr>
+                                <tr class="brand-total-row">
+                                    <td><strong>WALTON Total</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-end"><strong>4</strong></td>
+                                    <td class="text-end"><strong>20</strong></td>
+                                    <td class="text-end"><strong>9</strong></td>
+                                    <td class="text-end"><strong>-</strong></td>
+                                    <td class="text-end"><strong>15</strong></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-dark">
+                                <tr>
+                                    <th colspan="3">Grand Total</th>
+                                    <th class="text-end">6</th>
+                                    <th class="text-end">20</th>
+                                    <th class="text-end">10</th>
+                                    <th class="text-end">-</th>
+                                    <th class="text-end">16</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>document.getElementById('generateReportBtn').addEventListener('click', () => alert('Generating new report based on your filters... (Simulation)'));</script>
+</body>
+
+</html>
