@@ -96,93 +96,96 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
-            <div class="ms-auto text-white"><i class="fa fa-user-circle"></i> Admin</div>
+            <!-- User Info and Logout Button -->
+            <div class="ms-auto d-flex align-items-center">
+                <div class="user-info me-3">
+                    <i class="fa fa-user-circle"></i> Admin
+                </div>
+                <a href="index.html" class="btn btn-outline-light btn-sm">
+                    <i class="fa fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <nav class="nav flex-column">
-            <!-- Dashboard Link -->
-            <a class="nav-link" href="dashboard.html"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+            <!-- 1. Dashboard -->
+            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
 
-            <!-- Sales Menu (Collapsible) -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="false"
-                aria-controls="salesCollapse">
-                <i class="fa fa-file-invoice-dollar"></i> Sales <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="salesCollapse">
-                <nav class="nav flex-column ms-3">
-                    <a class="nav-link" href="sales-create.html">New Invoice</a>
-                    <a class="nav-link" href="sales-manage-invoices.html">Invoice List</a>
-                    <a class="nav-link" href="sales-return-create.html">Process Return</a>
-                </nav>
-            </div>
-
-            <!-- Purchases Menu (Collapsible) -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="false"
-                aria-controls="purchasesCollapse">
-                <i class="fa fa-shopping-cart"></i> Purchases <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="purchasesCollapse">
-                <nav class="nav flex-column ms-3">
-                    <a class="nav-link" href="purchases-create.html">New Purchase</a>
-                    <!-- In a full app, you'd have a separate purchase list page -->
-                    <a class="nav-link" href="purchases-create.html">Purchase List</a>
-                </nav>
-            </div>
-
-            <!-- Inventory Menu (Collapsible) -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="false"
-                aria-controls="inventoryCollapse">
-                <i class="fa fa-box-open"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="inventoryCollapse">
-                <nav class="nav flex-column ms-3">
-                    <a class="nav-link" href="inventory-products.html">Product List</a>
-                    <a class="nav-link" href="items-manage.html">Item Categories</a>
-                    <a class="nav-link" href="brands-manage.html">Brands</a>
-                </nav>
-            </div>
-
-            <!-- Contacts Menu (Collapsible) -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="false"
-                aria-controls="contactsCollapse">
-                <i class="fa fa-users"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            <!-- 2. Contacts Menu -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
             <div class="collapse show" id="contactsCollapse">
-                <nav class="nav flex-column ms-3">
-                    <a class="nav-link" href="customers-list.html">Customers</a>
-                    <a class="nav-link" href="suppliers-manage.html">Suppliers</a>
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
+                    <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
                 </nav>
             </div>
 
-            <!-- Finance Menu (Collapsible) -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="false"
-                aria-controls="financeCollapse">
-                <i class="fa fa-wallet"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            <!-- 3. Inventory Menu -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="inventoryCollapse">
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
+                    <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
+                    <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
+                </nav>
+            </div>
+
+            <!-- 4. Purchases Menu -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
+                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="purchasesCollapse">
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
+                    <a class="nav-link nav-sub-link" href="#">Purchase List</a>
+                </nav>
+            </div>
+
+            <!-- 5. Sales Menu -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
+                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="salesCollapse">
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
+                    <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
+                    <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
+                </nav>
+            </div>
+
+            <!-- 6. Finance Menu -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
             <div class="collapse show" id="financeCollapse">
-                <nav class="nav flex-column ms-3">
-                    <a class="nav-link" href="expenses-manage.html">Manage Expenses</a>
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
                 </nav>
             </div>
 
-            <!-- Reports Menu (Collapsible) -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false"
-                aria-controls="reportsCollapse">
-                <i class="fa fa-chart-pie"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            <!-- 7. Reports Menu -->
+            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
             <div class="collapse show" id="reportsCollapse">
-                <nav class="nav flex-column ms-3">
-                    <a class="nav-link" href="reports-sales.html">Sales Report</a>
-                    <a class="nav-link" href="reports-stock-ledger.html">Stock Ledger</a>
-                    <a class="nav-link" href="reports-customer-dues.html">Customer Dues</a>
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
+                    <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
+                    <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
                 </nav>
             </div>
 
-            <!-- Settings Link -->
-            <a class="nav-link" href="settings.html"><i class="fa fa-cog"></i> Settings</a>
+            <!-- 8. Settings Link -->
+            <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
         </nav>
     </div>
 
