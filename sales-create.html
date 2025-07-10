@@ -222,27 +222,78 @@
                     </div>
                     <button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-plus me-1"></i> Add Item
                         Row</button>
-                    <div class="row mt-4 justify-content-end">
+
+                    <!-- EMI Schedule and Totals are now in the same row for side-by-side layout -->
+                    <div class="row mt-4">
+                        <!-- EMI SCHEDULE COLUMN -->
+                        <div class="col-lg-7 d-none" id="emiScheduleContainer">
+                            <h5 class="mb-3">EMI Payment Schedule</h5>
+                            <div class="table-responsive" style="max-height: 400px;">
+                                <table class="table table-sm table-bordered table-hover">
+                                    <thead class="table-light sticky-top">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Payment Date</th>
+                                            <th class="text-end">Payment</th>
+                                            <th class="text-end">Principal</th>
+                                            <th class="text-end">Late Fee</th>
+                                            <th class="text-end">Remaining Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="emiScheduleTbody">
+                                        <!-- Schedule rows will be generated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- TOTALS COLUMN -->
                         <div class="col-lg-5">
                             <div class="invoice-total-box">
                                 <div class="d-flex justify-content-between mb-2"><span>Subtotal:</span><span
                                         id="subtotalSpan">৳ 29,320.00</span></div>
-                                <div class="d-flex justify-content-between mb-2"><span>Discount:</span><span><input
-                                            type="text" class="form-control form-control-sm text-end"
-                                            style="width: 100px;" id="discountInput" value="0"
-                                            placeholder="% or fixed"></span></div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span>Discount:</span><span><input type="text"
+                                            class="form-control form-control-sm text-end" style="width: 100px;"
+                                            id="discountInput" value="0" placeholder="% or fixed"></span>
+                                </div>
                                 <hr>
                                 <div class="d-flex justify-content-between fw-bold h4 mb-3"><span>GRAND
                                         TOTAL:</span><span id="grandTotalSpan">৳ 29,320.00</span></div>
-                                <div class="d-flex justify-content-between mb-2"><label for="downPayment"
-                                        class="col-form-label">Down Payment:</label><input type="number"
-                                        class="form-control form-control-sm text-end" id="downPayment"
+                                <!-- EMI Controls -->
+                                <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox"
+                                        role="switch" id="enableEmiCheck"><label class="form-check-label"
+                                        for="enableEmiCheck">Setup EMI Plan</label></div>
+                                <div id="emiDetails" class="d-none ps-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><label
+                                            for="emiInstallments" class="form-label mb-0">No. of
+                                            Installments:</label><input type="number"
+                                            class="form-control form-control-sm text-end" id="emiInstallments"
+                                            style="width: 120px;" value="12" min="1"></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><label
+                                            for="emiInterestRate" class="form-label mb-0">Late Fee Rate
+                                            (%):</label><input type="number"
+                                            class="form-control form-control-sm text-end" id="emiInterestRate"
+                                            style="width: 120px;" value="10" min="0"></div>
+                                    <hr class="my-2">
+                                    <div class="d-flex justify-content-between fw-bold mb-2"><span>Monthly
+                                            Payment:</span><span id="monthlyPaymentSpan">৳ 0.00</span></div>
+                                    <div class="d-flex justify-content-between text-muted"><small>Total w/
+                                            Late Fee:</small><small id="totalPayableSpan">৳ 0.00</small></div>
+                                </div>
+                                <hr>
+                                <!-- End EMI Controls -->
+                                <div class="d-flex justify-content-between align-items-center mb-2"><label
+                                        for="downPayment" class="col-form-label">Down Payment:</label><input
+                                        type="number" class="form-control form-control-sm text-end" id="downPayment"
                                         style="width: 120px;" value="15000"></div>
-                                <div class="d-flex justify-content-between text-danger fw-bold h5"><span>CLOSING
-                                        DUE:</span><span id="closingDueSpan">৳ 14,320.00</span></div>
+                                <div class="d-flex justify-content-between text-danger fw-bold h5"
+                                    id="closingDueWrapper"><span>CLOSING DUE:</span><span id="closingDueSpan">৳
+                                        14,320.00</span></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row mt-4">
                         <div class="col-12 text-end"><button class="btn btn-secondary"><i class="fa fa-save me-1"></i>
                                 Save as Draft</button><button class="btn btn-success" id="finalizeBtn"><i
@@ -253,7 +304,182 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>/* Same JS as before */ document.addEventListener('DOMContentLoaded', function () { const e = document.getElementById("invoiceItemsTbody"), t = document.getElementById("addItemBtn"); function n() { let t = 0; e.querySelectorAll("tr").forEach(e => { const n = parseFloat(e.querySelector(".item-qty").value) || 0, o = parseFloat(e.querySelector(".item-price").value) || 0, a = n * o; e.querySelector(".item-total").textContent = `৳ ${a.toFixed(2)}`, t += a }), document.getElementById("subtotalSpan").textContent = `৳ ${t.toFixed(2)}`; const o = document.getElementById("discountInput").value; let a = 0; a = o.includes("%") ? (parseFloat(o.replace("%", "")) || 0) / 100 * t : parseFloat(o) || 0; const c = t - a; document.getElementById("grandTotalSpan").textContent = `৳ ${c.toFixed(2)}`; const d = parseFloat(document.getElementById("downPayment").value) || 0, l = c - d; document.getElementById("closingDueSpan").textContent = `৳ ${l.toFixed(2)}` } t.addEventListener("click", function () { const t = '<tr><td><input type="text" class="form-control item-selector" placeholder="Select or type product" list="product-list"></td><td><input type="text" class="form-control-plaintext text-center item-stock" value="-" readonly></td><td><input type="number" class="form-control item-qty" value="1" min="1"></td><td><input type="number" class="form-control item-price" value="0"></td><td class="text-end align-middle fw-bold item-total">৳ 0.00</td><td class="text-center align-middle"><button class="btn btn-sm btn-danger delete-row-btn"><i class="fa fa-trash"></i></button></td></tr>'; e.insertAdjacentHTML("beforeend", t) }), e.addEventListener("input", function (e) { const t = e.target; if (t.classList.contains("item-selector")) { const e = t.value, o = document.getElementById("product-list").options; for (let a of o) if (a.value === e) { const e = t.closest("tr"); e.querySelector(".item-price").value = a.dataset.price || 0, e.querySelector(".item-stock").value = a.dataset.stock || "-"; break } } (t.classList.contains("item-qty") || t.classList.contains("item-price") || t.classList.contains("item-selector")) && n() }), e.addEventListener("click", function (e) { e.target.closest(".delete-row-btn") && (e.target.closest("tr").remove(), n()) }), document.getElementById("discountInput").addEventListener("input", n), document.getElementById("downPayment").addEventListener("input", n), document.getElementById("finalizeBtn").addEventListener("click", () => { alert('Invoice Finalized! \nIn a real app, this would save to the database and generate a PDF.') }), n() });</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Element References
+            const tbody = document.getElementById("invoiceItemsTbody");
+            const addItemBtn = document.getElementById("addItemBtn");
+            const enableEmiCheck = document.getElementById("enableEmiCheck");
+            const emiDetails = document.getElementById("emiDetails");
+            const emiInstallmentsInput = document.getElementById("emiInstallments");
+            const emiInterestRateInput = document.getElementById("emiInterestRate");
+            const monthlyPaymentSpan = document.getElementById("monthlyPaymentSpan");
+            const totalPayableSpan = document.getElementById("totalPayableSpan");
+            const closingDueWrapper = document.getElementById("closingDueWrapper");
+            const emiScheduleContainer = document.getElementById("emiScheduleContainer");
+            const emiScheduleTbody = document.getElementById("emiScheduleTbody");
+            const allInputs = document.querySelectorAll('#discountInput, #downPayment, #enableEmiCheck, #emiInstallments, #emiInterestRate, #invoiceDate');
+
+            // The main function to calculate everything
+            function updateAllCalculations() {
+                let subtotal = 0;
+                tbody.querySelectorAll("tr").forEach(row => {
+                    const qty = parseFloat(row.querySelector(".item-qty").value) || 0;
+                    const price = parseFloat(row.querySelector(".item-price").value) || 0;
+                    const total = qty * price;
+                    row.querySelector(".item-total").textContent = `৳ ${total.toFixed(2)}`;
+                    subtotal += total;
+                });
+                document.getElementById("subtotalSpan").textContent = `৳ ${subtotal.toFixed(2)}`;
+
+                const discountInput = document.getElementById("discountInput").value;
+                let discountAmount = 0;
+                if (discountInput.includes("%")) {
+                    const percentage = parseFloat(discountInput.replace("%", "")) || 0;
+                    discountAmount = (percentage / 100) * subtotal;
+                } else {
+                    discountAmount = parseFloat(discountInput) || 0;
+                }
+
+                const grandTotal = subtotal - discountAmount;
+                document.getElementById("grandTotalSpan").textContent = `৳ ${grandTotal.toFixed(2)}`;
+
+                const downPayment = parseFloat(document.getElementById("downPayment").value) || 0;
+                const loanAmount = grandTotal - downPayment;
+
+                // Handle EMI or regular due calculation
+                if (enableEmiCheck.checked) {
+                    emiDetails.classList.remove("d-none");
+                    closingDueWrapper.classList.add("d-none");
+                    emiScheduleContainer.classList.remove("d-none");
+
+                    const installments = parseInt(emiInstallmentsInput.value) || 1;
+                    const annualInterestRate = parseFloat(emiInterestRateInput.value) || 0;
+
+                    generateAndShowEmiSchedule(loanAmount, installments, annualInterestRate);
+
+                } else {
+                    emiDetails.classList.add("d-none");
+                    closingDueWrapper.classList.remove("d-none");
+                    emiScheduleContainer.classList.add("d-none");
+                    document.getElementById("closingDueSpan").textContent = `৳ ${loanAmount.toFixed(2)}`;
+                    monthlyPaymentSpan.textContent = "৳ 0.00";
+                    totalPayableSpan.textContent = "৳ 0.00";
+                }
+            }
+
+            function generateAndShowEmiSchedule(principal, installments, annualRate) {
+                if (principal <= 0 || installments <= 0) {
+                    emiScheduleTbody.innerHTML = '<tr><td colspan="6" class="text-center">Enter a valid amount and number of installments.</td></tr>';
+                    monthlyPaymentSpan.textContent = `৳ 0.00`;
+                    totalPayableSpan.textContent = `৳ ${(principal < 0 ? 0 : principal) + (parseFloat(document.getElementById("downPayment").value) || 0).toFixed(2)}`;
+                    return;
+                }
+
+                let monthlyPayment;
+                const monthlyRate = annualRate / 100 / 12;
+
+                if (monthlyRate > 0) {
+                    const pow = Math.pow(1 + monthlyRate, installments);
+                    monthlyPayment = principal * (monthlyRate * pow) / (pow - 1);
+                } else {
+                    monthlyPayment = principal / installments; // No interest
+                }
+
+                const totalPayableWithInterest = monthlyPayment * installments;
+                const downPayment = parseFloat(document.getElementById("downPayment").value) || 0;
+                monthlyPaymentSpan.textContent = `৳ ${monthlyPayment.toFixed(2)}`;
+                totalPayableSpan.textContent = `৳ ${(totalPayableWithInterest + downPayment).toFixed(2)}`;
+
+                // Generate Schedule Table
+                let scheduleHtml = '';
+                let remainingBalance = principal;
+                const startDateValue = document.getElementById('invoiceDate').value;
+                const startDate = new Date(startDateValue + 'T00:00:00'); // Avoid timezone issues
+
+                for (let i = 1; i <= installments; i++) {
+                    const interestForMonth = remainingBalance * monthlyRate;
+                    const principalForMonth = monthlyPayment - interestForMonth;
+                    remainingBalance -= principalForMonth;
+
+                    // To prevent small negative balance at the end due to floating point math
+                    if (i === installments) {
+                        remainingBalance = 0;
+                    }
+
+                    // Calculate payment date
+                    const paymentDate = new Date(startDate);
+                    paymentDate.setMonth(startDate.getMonth() + i);
+
+                    scheduleHtml += `
+                        <tr>
+                            <td>${i}</td>
+                            <td>${paymentDate.toLocaleDateString()}</td>
+                            <td class="text-end">৳ ${monthlyPayment.toFixed(2)}</td>
+                            <td class="text-end">৳ ${principalForMonth.toFixed(2)}</td>
+                            <td class="text-end">৳ ${interestForMonth.toFixed(2)}</td>
+                            <td class="text-end fw-bold">৳ ${remainingBalance.toFixed(2)}</td>
+                        </tr>
+                    `;
+                }
+                emiScheduleTbody.innerHTML = scheduleHtml;
+            }
+
+            // Event Listeners
+            addItemBtn.addEventListener("click", () => {
+                const newRowHtml = `
+                    <tr>
+                        <td><input type="text" class="form-control item-selector" placeholder="Select or type product" list="product-list"></td>
+                        <td><input type="text" class="form-control-plaintext text-center item-stock" value="-" readonly></td>
+                        <td><input type="number" class="form-control item-qty" value="1" min="1"></td>
+                        <td><input type="number" class="form-control item-price" value="0"></td>
+                        <td class="text-end align-middle fw-bold item-total">৳ 0.00</td>
+                        <td class="text-center align-middle"><button class="btn btn-sm btn-danger delete-row-btn"><i class="fa fa-trash"></i></button></td>
+                    </tr>`;
+                tbody.insertAdjacentHTML("beforeend", newRowHtml);
+            });
+
+            tbody.addEventListener("input", e => {
+                const target = e.target;
+                if (target.classList.contains("item-selector")) {
+                    const selectedValue = target.value;
+                    const options = document.getElementById("product-list").options;
+                    for (let option of options) {
+                        if (option.value === selectedValue) {
+                            const row = target.closest("tr");
+                            row.querySelector(".item-price").value = option.dataset.price || 0;
+                            row.querySelector(".item-stock").value = option.dataset.stock || "-";
+                            break;
+                        }
+                    }
+                }
+                if (target.matches(".item-qty, .item-price, .item-selector")) {
+                    updateAllCalculations();
+                }
+            });
+
+            tbody.addEventListener("click", e => {
+                if (e.target.closest(".delete-row-btn")) {
+                    e.target.closest("tr").remove();
+                    updateAllCalculations();
+                }
+            });
+
+            allInputs.forEach(input => {
+                input.addEventListener('input', updateAllCalculations);
+                if (input.type === 'checkbox') {
+                    input.addEventListener('change', updateAllCalculations);
+                }
+            });
+
+            document.getElementById("finalizeBtn").addEventListener("click", () => {
+                alert('Invoice Finalized! \nIn a real app, this would save to the database and generate a PDF.');
+            });
+
+            // Initial calculation on page load
+            updateAllCalculations();
+        });
+    </script>
 </body>
 
 </html>
