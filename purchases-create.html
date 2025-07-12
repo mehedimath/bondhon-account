@@ -10,6 +10,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom Styles (Same as Dashboard) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         body {
             background-color: #f8f9fa;
@@ -164,7 +165,7 @@
                 <div class="card-body p-4">
                     <!-- Purchase Header -->
                     <div class="row mb-4">
-                        <div class="col-md-6">
+                        <div class="col-md-6 animate__animated animate__fadeInUp">
                             <label for="supplierName" class="form-label">Supplier Name *</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="supplierName" list="supplier-list"
@@ -180,18 +181,18 @@
                                     data-bs-target="#manageSupplierModal">Manage</button>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 animate__animated animate__fadeInUp">
                             <label for="purchaseDate" class="form-label">Purchase Date *</label>
                             <input type="date" class="form-control" id="purchaseDate" value="2025-02-23">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 animate__animated animate__fadeInUp">
                             <label for="purchaseRef" class="form-label">Reference / Bill #</label>
                             <input type="text" class="form-control" id="purchaseRef" placeholder="Optional">
                         </div>
                     </div>
 
                     <!-- Purchase Items Table -->
-                    <div class="table-responsive">
+                    <div class="table-responsive animate__animated animate__fadeInUp">
                         <table class="table table-bordered" id="purchase-items-table">
                             <thead class="table-light">
                                 <tr>
@@ -227,11 +228,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <button class="btn btn-primary btn-sm" id="addItemBtn"><i class="fa fa-plus me-1"></i> Add Item
+                    <button class="btn btn-primary btn-sm animate__animated animate__fadeInUp" id="addItemBtn"><i class="fa fa-plus me-1"></i> Add Item
                         Row</button>
 
                     <!-- Purchase Footer -->
-                    <div class="row mt-4">
+                    <div class="row mt-4 animate__animated animate__fadeInUp">
                         <div class="col-lg-7"><label for="remarks" class="form-label">Remarks</label><textarea
                                 class="form-control" id="remarks" rows="3"
                                 placeholder="Add any notes for this purchase..."></textarea></div>
@@ -248,7 +249,7 @@
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="row mt-4">
+                    <div class="row mt-4 animate__animated animate__fadeInUp">
                         <div class="col-12 text-end"><button class="btn btn-success" id="recordPurchaseBtn"><i
                                     class="fa fa-check-circle me-1"></i> Record Purchase</button></div>
                     </div>
