@@ -123,7 +123,7 @@
             </a>
             <div class="collapse show" id="salesCollapse">
                 <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
+                    <a class="nav-link nav-sub-link active" href="sales-create.html">New Invoice</a>
                     <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
                     <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
                 </nav>
@@ -203,42 +203,43 @@
 
                         <div class="col-lg-5 ms-auto" id="totals-column">
                             <div class="invoice-total-box">
-                                <div class="d-flex justify-content-between mb-2"><span>Subtotal:</span><span
-                                        id="subtotalSpan">৳ 0.00</span></div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span id="subtotalSpan">৳ 0.00</span>
+                                </div>
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span>Discount:</span><span><input type="text"
-                                            class="form-control form-control-sm text-end" style="width: 100px;"
-                                            id="discountInput" value="0" placeholder="% or fixed"></span>
+                                    <span>Discount:</span>
+                                    <span><input type="text" class="form-control form-control-sm text-end" style="width: 100px;" id="discountInput" value="0" placeholder="% or fixed"></span>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-between fw-bold h4 mb-3"><span>GRAND
-                                        TOTAL:</span><span id="grandTotalSpan">৳ 0.00</span></div>
-                                <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox"
-                                        role="switch" id="enableEmiCheck"><label class="form-check-label"
-                                        for="enableEmiCheck">Setup EMI Plan</label></div>
+                                <div class="d-flex justify-content-between fw-bold h4 mb-3">
+                                    <span>GRAND TOTAL:</span>
+                                    <span id="grandTotalSpan">৳ 0.00</span>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <label for="paidAmount" class="col-form-label fw-bold">PAID AMOUNT:</label>
+                                    <input type="number" class="form-control form-control-lg text-end" id="paidAmount" style="width: 150px;" value="0" placeholder="0.00">
+                                </div>
+                                
+                                <hr>
+                                
+                                <div class="d-flex justify-content-between text-danger fw-bold h5 mb-3" id="closingDueWrapper">
+                                    <span>BALANCE DUE:</span>
+                                    <span id="closingDueSpan">৳ 0.00</span>
+                                </div>
+
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="enableEmiCheck">
+                                    <label class="form-check-label" for="enableEmiCheck">Setup EMI for Remaining Balance</label>
+                                </div>
+
                                 <div id="emiDetails" class="d-none ps-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-2"><label
-                                            for="emiInstallments" class="form-label mb-0">No. of
-                                            Installments:</label><input type="number"
-                                            class="form-control form-control-sm text-end" id="emiInstallments"
-                                            style="width: 120px;" value="12" min="1"></div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2"><label
-                                            for="emiAnnualRate" class="form-label mb-0">Annual Rate
-                                            (%):</label><input type="number"
-                                            class="form-control form-control-sm text-end" id="emiAnnualRate"
-                                            style="width: 120px;" value="10" min="0"></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><label for="emiInstallments" class="form-label mb-0">No. of Installments:</label><input type="number" class="form-control form-control-sm text-end" id="emiInstallments" style="width: 120px;" value="12" min="1"></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2"><label for="emiAnnualRate" class="form-label mb-0">Annual Rate (%):</label><input type="number" class="form-control form-control-sm text-end" id="emiAnnualRate" style="width: 120px;" value="10" min="0"></div>
                                     <hr class="my-2">
-                                    <div class="d-flex justify-content-between fw-bold mb-2"><span>Monthly
-                                            Payment:</span><span id="monthlyPaymentSpan">৳ 0.00</span></div>
+                                    <div class="d-flex justify-content-between fw-bold mb-2"><span>Monthly Payment:</span><span id="monthlyPaymentSpan">৳ 0.00</span></div>
                                 </div>
-                                <hr>
-                                <div class="d-flex justify-content-between align-items-center mb-2"><label
-                                        for="downPayment" class="col-form-label">Down Payment:</label><input
-                                        type="number" class="form-control form-control-sm text-end" id="downPayment"
-                                        style="width: 120px;" value="0"></div>
-                                <div class="d-flex justify-content-between text-danger fw-bold h5"
-                                    id="closingDueWrapper"><span>CLOSING DUE:</span><span id="closingDueSpan">৳
-                                        0.00</span></div>
                             </div>
                         </div>
                     </div>
@@ -295,7 +296,7 @@
             const emiScheduleContainer = document.getElementById("emiScheduleContainer");
             const totalsColumn = document.getElementById("totals-column");
             const emiScheduleTbody = document.getElementById("emiScheduleTbody");
-            const allCalculationInputs = document.querySelectorAll('#discountInput, #downPayment, #enableEmiCheck, #emiInstallments, #emiAnnualRate, #invoiceDate');
+            const allCalculationInputs = document.querySelectorAll('#discountInput, #paidAmount, #enableEmiCheck, #emiInstallments, #emiAnnualRate, #invoiceDate');
 
             function formatCurrency(num) {
                 return `৳ ${num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -324,21 +325,25 @@
                 const grandTotal = subtotal - discountAmount;
                 document.getElementById("grandTotalSpan").textContent = formatCurrency(grandTotal);
 
-                const downPayment = parseFloat(document.getElementById("downPayment").value) || 0;
-                const loanAmount = grandTotal - downPayment;
+                const paidAmount = parseFloat(document.getElementById("paidAmount").value) || 0;
+                const remainingBalance = grandTotal - paidAmount;
 
-                if (enableEmiCheck.checked) {
+                // Always display the balance due initially
+                document.getElementById("closingDueSpan").textContent = formatCurrency(remainingBalance);
+
+                if (enableEmiCheck.checked && remainingBalance > 0) {
+                    // If EMI is on, hide the simple "Balance Due" and show EMI details
                     emiDetails.classList.remove("d-none");
                     closingDueWrapper.classList.add("d-none");
                     emiScheduleContainer.classList.remove("d-none");
                     totalsColumn.classList.remove('ms-auto');
-                    generateAndShowEmiSchedule(loanAmount);
+                    generateAndShowEmiSchedule(remainingBalance);
                 } else {
+                    // If EMI is off, show the "Balance Due" and hide EMI details
                     emiDetails.classList.add("d-none");
                     closingDueWrapper.classList.remove("d-none");
                     emiScheduleContainer.classList.add("d-none");
                     totalsColumn.classList.add('ms-auto');
-                    document.getElementById("closingDueSpan").textContent = formatCurrency(loanAmount);
                     monthlyPaymentSpan.textContent = formatCurrency(0);
                 }
             }
@@ -365,16 +370,16 @@
                 monthlyPaymentSpan.textContent = formatCurrency(monthlyPayment);
 
                 let scheduleHtml = '';
-                let remainingBalance = principal;
+                let balance = principal;
                 const startDate = new Date(document.getElementById('invoiceDate').value + 'T00:00:00');
 
                 for (let i = 1; i <= installments; i++) {
-                    const interestForMonth = remainingBalance * monthlyInterestRate;
+                    const interestForMonth = balance * monthlyInterestRate;
                     const principalForMonth = monthlyPayment - interestForMonth;
-                    remainingBalance -= principalForMonth;
+                    balance -= principalForMonth;
 
-                    if (i === installments && remainingBalance < 1 && remainingBalance > -1) {
-                        remainingBalance = 0;
+                    if (i === installments && balance < 1 && balance > -1) {
+                        balance = 0;
                     }
 
                     const paymentDate = new Date(startDate);
@@ -387,7 +392,7 @@
                             <td class="text-end">${formatCurrency(monthlyPayment)}</td>
                             <td class="text-end">${formatCurrency(principalForMonth)}</td>
                             <td class="text-end">${formatCurrency(interestForMonth)}</td>
-                            <td class="text-end fw-bold">${formatCurrency(remainingBalance)}</td>
+                            <td class="text-end fw-bold">${formatCurrency(balance)}</td>
                         </tr>`;
                 }
                 emiScheduleTbody.innerHTML = scheduleHtml;
@@ -447,7 +452,17 @@
             });
 
             document.getElementById("finalizeBtn").addEventListener("click", () => {
-                alert('Invoice Finalized! In a real app, this would save to the database and generate a PDF.');
+                const isEmiEnabled = document.getElementById("enableEmiCheck").checked;
+                const balanceDue = parseFloat(document.getElementById("closingDueSpan").textContent.replace(/[^0-9.-]+/g,""));
+
+                if (!isEmiEnabled && balanceDue > 0) {
+                     alert(`Invoice Finalized with a BALANCE DUE of ${formatCurrency(balanceDue)}! This will be saved to the customer's account.`);
+                } else if (isEmiEnabled) {
+                     alert('Invoice Finalized with an EMI Plan! The schedule will be saved.');
+                } else {
+                     alert('Invoice Finalized and fully paid!');
+                }
+                // In a real app, this would save all data to the database.
             });
 
             addItemBtn.click();
