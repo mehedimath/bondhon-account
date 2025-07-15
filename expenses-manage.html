@@ -24,7 +24,6 @@
             width: 250px;
             padding: 70px 0 0;
             background-color: #f8f9fa;
-            ;
             color: #212529;
             height: 100vh;
             overflow-y: auto;
@@ -85,7 +84,10 @@
         </div>
     </nav>
 
+
+
     <!-- Sidebar -->
+
     <div class="sidebar">
         <nav class="nav flex-column">
             <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
@@ -104,6 +106,7 @@
             </a>
             <div class="collapse show" id="inventoryCollapse">
                 <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory Dashboard</a>
                     <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
                     <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
                     <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
@@ -115,6 +118,7 @@
             </a>
             <div class="collapse show" id="purchasesCollapse">
                 <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchase Dashboard</a>
                     <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
                     <a class="nav-link nav-sub-link" href="#">Purchase List</a>
                 </nav>
@@ -125,6 +129,7 @@
             </a>
             <div class="collapse show" id="salesCollapse">
                 <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales Dashboard</a>
                     <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
                     <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
                     <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
@@ -139,18 +144,38 @@
                 </nav>
             </div>
             <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button" aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse"><nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav></div>
+            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
+                aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
+                    class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
+            <div class="collapse show" id="collectionsCollapse">
+                <nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI
+                        Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a
+                        class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav>
+            </div>
             <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
                 <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
             <div class="collapse show" id="reportsCollapse">
                 <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock Dashboard</a>
                     <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
                     <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
                     <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
                 </nav>
             </div>
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#accountingCollapse" role="button" aria-expanded="true">
+                <i class="fa fa-chart-pie fa-fw"></i> Accounts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="accountingCollapse">
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="voucher_form.html">Voucher Posting</a>
+                    <a class="nav-link nav-sub-link" href="voucher-list.html">Voucher List</a><a
+                        class="nav-link nav-sub-link" href="trial-balance.html">Trial Balance</a>
+                </nav>
+            </div>
+
+
             <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
         </nav>
     </div>
