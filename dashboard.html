@@ -15,17 +15,12 @@
     <style>
         :root {
             --bs-primary-rgb: 71, 121, 222;
-            /* A more modern blue */
             --bs-success-rgb: 25, 185, 154;
-            /* A vibrant teal/green */
             --bs-warning-rgb: 255, 184, 34;
-            /* A rich gold/yellow */
             --bs-danger-rgb: 239, 72, 88;
-            /* A softer, modern red */
             --bs-dark-rgb: 33, 37, 41;
             --bs-light-rgb: 248, 249, 250;
             --bs-body-bg-rgb: 237, 242, 247;
-            /* A light grey background */
             --bs-body-color-rgb: 52, 71, 103;
             --bs-font-sans-serif: 'Poppins', sans-serif;
         }
@@ -36,7 +31,6 @@
             color: rgb(var(--bs-body-color-rgb));
         }
 
-        /* --- UNCHANGED SIDEBAR & HEADER STYLES --- */
         .sidebar {
             position: fixed;
             top: 0;
@@ -44,52 +38,60 @@
             bottom: 0;
             width: 250px;
             padding: 70px 0 0;
-            background-color: #f8f9fa;
-            /* Original color retained */
-            color: #212529;
+            background-color: #fff;
             height: 100vh;
             overflow-y: auto;
             border-right: 1px solid #dee2e6;
+            z-index: 1000;
         }
 
         .sidebar .nav-link {
-            color: #212529;
-            padding: 10px 20px;
+            color: #344767;
+            padding: 12px 20px;
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
             color: #0d6efd;
             background-color: #e9ecef;
+            border-radius: 0.375rem;
+            margin: 0 1rem;
+            padding: 12px;
         }
 
         .sidebar .nav-link.active {
-            font-weight: 600;
+            color: white;
+            background-color: rgb(var(--bs-primary-rgb));
         }
 
         .sidebar .nav-link .fa-fw {
             width: 20px;
             text-align: center;
-            margin-right: 10px
+            margin-right: 12px;
+            font-size: 1rem;
         }
 
         .nav-sub-link {
-            margin-left: 50px;
-            font-size: 0.9em;
-            font-weight: 400;
+            padding-left: 52px !important;
+            font-size: 0.85em !important;
+            font-weight: 400 !important;
+            background-color: transparent !important;
         }
 
         .nav-sub-link:hover,
         .nav-sub-link.active {
-            color: #0d6efd;
-            background-color: transparent;
+            color: rgb(var(--bs-primary-rgb)) !important;
+        }
+
+        .nav-sub-link.active {
+            font-weight: 600 !important;
         }
 
         .main-content {
             margin-left: 250px;
             padding: 90px 30px 30px 30px;
-            /* Increased padding */
         }
 
         .navbar {
@@ -99,15 +101,6 @@
         .navbar-brand {
             font-weight: 700;
         }
-
-        .user-info {
-            color: #dee2e6;
-        }
-
-        /* --- END OF UNCHANGED STYLES --- */
-
-
-        /* --- ENHANCED DASHBOARD STYLES --- */
 
         h1,
         .h1,
@@ -124,9 +117,7 @@
         .card {
             border: none;
             border-radius: 0.75rem;
-            /* Softer corners */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            background-clip: border-box;
         }
 
         .card-header {
@@ -136,7 +127,6 @@
             color: #344767;
         }
 
-        /* New Stat Card Design */
         .stat-card {
             background-color: #fff;
             position: relative;
@@ -162,11 +152,12 @@
             justify-content: center;
             width: 64px;
             height: 64px;
-            border-radius: 50%;
+            border-radius: 0.75rem;
             color: #fff;
             font-size: 1.75rem;
             flex-shrink: 0;
             margin-left: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1);
         }
 
         .stat-card-title {
@@ -181,17 +172,6 @@
             font-size: 1.75rem;
             font-weight: 700;
             color: #344767;
-        }
-
-        .stat-card a {
-            font-size: 0.8rem;
-            color: #6c757d;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .stat-card a:hover {
-            color: rgb(var(--bs-primary-rgb));
         }
 
         .stat-card .icon-primary {
@@ -210,14 +190,6 @@
             background: linear-gradient(135deg, #ef4858, #ff7b88);
         }
 
-
-        /* Enhanced Table Style */
-        .table {
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-bottom: 0;
-        }
-
         .table thead th {
             background-color: #f8f9fa;
             border-bottom: 2px solid #dee2e6;
@@ -225,28 +197,16 @@
             text-transform: uppercase;
             font-size: 0.8rem;
             color: #6c757d;
-            padding: 1rem;
         }
 
         .table tbody td {
             vertical-align: middle;
-            padding: 1rem;
-            border-top: 1px solid #eaecf0;
             font-weight: 500;
+            border-top: 1px solid #eaecf0;
         }
 
         .table tbody tr:hover {
             background-color: #f8f9fa;
-        }
-
-        .table-responsive {
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-
-        .badge {
-            font-weight: 600;
-            padding: 0.4em 0.7em;
         }
     </style>
 </head>
@@ -257,7 +217,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
             <div class="ms-auto d-flex align-items-center">
-                <div class="user-info me-3">
+                <div class="user-info text-white me-3">
                     <i class="fa fa-user-circle"></i> Admin
                 </div>
                 <a href="index.html" class="btn btn-outline-light btn-sm">
@@ -267,66 +227,97 @@
         </div>
     </nav>
 
-    <!-- SIDEBAR (UNCHANGED) -->
-   <div class="sidebar">
+    <!-- SIDEBAR (UPDATED) -->
+    <div class="sidebar">
         <nav class="nav flex-column">
-            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
-            <a class="nav-link" href="all-create.html"><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a>
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
+            <!-- New Dashboards Section -->
+            <a class="nav-link active" data-bs-toggle="collapse" href="#dashboardsCollapse" role="button"
+                aria-expanded="true">
+                <i class="fa fa-tachometer-alt fa-fw"></i> Dashboards <i
+                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse show" id="dashboardsCollapse">
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link active" href="dashboard.html">Main Overview</a>
+                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory</a>
+                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchases</a>
+                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales</a>
+                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock</a>
+                </nav>
+            </div>
+
+            <a class="nav-link" href="all-create.html"><i class="fa fa-plus-square fa-fw"></i> Quick Add</a>
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="false">
                 <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
-            <div class="collapse show" id="contactsCollapse">
+            <div class="collapse" id="contactsCollapse">
                 <nav class="nav flex-column">
                     <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
                     <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
                 </nav>
             </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="false">
                 <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
-            <div class="collapse show" id="inventoryCollapse">
+            <div class="collapse" id="inventoryCollapse">
                 <nav class="nav flex-column">
                     <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
                     <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
                     <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
                 </nav>
             </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="false">
                 <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
                     class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
-            <div class="collapse show" id="purchasesCollapse">
+            <div class="collapse" id="purchasesCollapse">
                 <nav class="nav flex-column">
                     <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
                     <a class="nav-link nav-sub-link" href="#">Purchase List</a>
                 </nav>
             </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="false">
                 <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
                     class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
-            <div class="collapse show" id="salesCollapse">
+            <div class="collapse" id="salesCollapse">
                 <nav class="nav flex-column">
                     <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
                     <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
                     <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
                 </nav>
             </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="false">
                 <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
-            <div class="collapse show" id="financeCollapse">
+            <div class="collapse" id="financeCollapse">
                 <nav class="nav flex-column">
                     <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
                 </nav>
             </div>
-            <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button" aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse"><nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav></div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
+                aria-expanded="false">
+                <i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
+                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+            </a>
+            <div class="collapse" id="collectionsCollapse">
+                <nav class="nav flex-column">
+                    <a class="nav-link nav-sub-link" href="emi-collection.html">EMI Collection</a>
+                    <a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a>
+                    <a class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a>
+                </nav>
+            </div>
+
+            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="false">
                 <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
             </a>
-            <div class="collapse show" id="reportsCollapse">
+            <div class="collapse" id="reportsCollapse">
                 <nav class="nav flex-column">
                     <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
                     <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
@@ -337,7 +328,7 @@
         </nav>
     </div>
 
-    <!-- MAIN CONTENT (ENHANCED) -->
+    <!-- MAIN CONTENT -->
     <main class="main-content">
         <div class="container-fluid">
             <!-- Header -->
@@ -358,8 +349,6 @@
                             <div>
                                 <div class="stat-card-title">Total Sales (Today)</div>
                                 <div class="stat-card-value">৳ 11.8M</div>
-                                <a href="#" class="stretched-link mt-2 d-block">View Report <i
-                                        class="fa fa-angle-right fa-xs"></i></a>
                             </div>
                             <div class="stat-card-icon icon-primary"><i class="fa fa-dollar-sign"></i></div>
                         </div>
@@ -372,8 +361,6 @@
                             <div>
                                 <div class="stat-card-title">Collection (Today)</div>
                                 <div class="stat-card-value">৳ 7.4M</div>
-                                <a href="#" class="stretched-link mt-2 d-block">View Transactions <i
-                                        class="fa fa-angle-right fa-xs"></i></a>
                             </div>
                             <div class="stat-card-icon icon-success"><i class="fa fa-hand-holding-dollar"></i></div>
                         </div>
@@ -386,8 +373,6 @@
                             <div>
                                 <div class="stat-card-title">Total Customer Dues</div>
                                 <div class="stat-card-value">৳ 3.6M</div>
-                                <a href="#" class="stretched-link mt-2 d-block">View Dues List <i
-                                        class="fa fa-angle-right fa-xs"></i></a>
                             </div>
                             <div class="stat-card-icon icon-warning"><i class="fa fa-file-invoice"></i></div>
                         </div>
@@ -400,8 +385,6 @@
                             <div>
                                 <div class="stat-card-title">Low Stock Items</div>
                                 <div class="stat-card-value">12 Items</div>
-                                <a href="#" class="stretched-link mt-2 d-block">Manage Inventory <i
-                                        class="fa fa-angle-right fa-xs"></i></a>
                             </div>
                             <div class="stat-card-icon icon-danger"><i class="fa fa-exclamation-triangle"></i></div>
                         </div>
@@ -417,7 +400,7 @@
                         <div class="card-body d-flex align-items-center"><canvas id="salesPurchaseChart"></canvas></div>
                     </div>
                 </div>
-                <div class="col-lg-5 animate__animated animate__fadeInUp">
+                <div class="col-lg-5">
                     <div class="card h-100">
                         <div class="card-header"><i class="fa fa-chart-pie me-2"></i>Top Selling Brands</div>
                         <div class="card-body d-flex align-items-center"><canvas id="topBrandsChart"></canvas></div>
@@ -433,7 +416,7 @@
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table mb-0">
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -478,115 +461,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Helper function to get CSS variable
         const getCssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-
-        // --- Bar Chart: Sales vs Purchases ---
         const salesPurchaseCtx = document.getElementById("salesPurchaseChart").getContext("2d");
         new Chart(salesPurchaseCtx, {
             type: "bar",
             data: {
                 labels: ["October", "November", "December", "January", "February"],
                 datasets: [{
-                    label: "Sales",
-                    data: [52e5, 59e5, 81e5, 75e5, 11845209],
+                    label: "Sales", data: [52e5, 59e5, 81e5, 75e5, 11845209],
                     backgroundColor: `rgba(${getCssVar('--bs-primary-rgb')}, 0.7)`,
-                    borderColor: `rgb(${getCssVar('--bs-primary-rgb')})`,
-                    borderWidth: 1,
-                    borderRadius: 4,
-                    barPercentage: 0.6
+                    borderRadius: 4, barPercentage: 0.6
                 }, {
-                    label: "Purchases",
-                    data: [45e5, 51e5, 62e5, 68e5, 8249785],
+                    label: "Purchases", data: [45e5, 51e5, 62e5, 68e5, 8249785],
                     backgroundColor: `rgba(${getCssVar('--bs-dark-rgb')}, 0.2)`,
-                    borderColor: `rgb(${getCssVar('--bs-dark-rgb')})`,
-                    borderWidth: 1,
-                    borderRadius: 4,
-                    barPercentage: 0.6
+                    borderRadius: 4, barPercentage: 0.6
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            font: { family: "'Poppins', sans-serif" }
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: '#212529',
-                        titleFont: { family: "'Poppins', sans-serif", weight: 'bold' },
-                        bodyFont: { family: "'Poppins', sans-serif" }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            drawBorder: false,
-                            color: '#e9ecef'
-                        },
-                        ticks: {
-                            font: { family: "'Poppins', sans-serif" },
-                            callback: function (value) {
-                                return '৳' + (value / 1000000) + 'M'; // Format as millions
-                            }
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: { family: "'Poppins', sans-serif" }
-                        }
-                    }
-                }
+                responsive: true, maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true, ticks: { callback: (v) => '৳' + (v / 1e6) + 'M' } } }
             }
         });
-
-        // --- Doughnut Chart: Top Selling Brands ---
         const topBrandsCtx = document.getElementById("topBrandsChart").getContext("2d");
         new Chart(topBrandsCtx, {
             type: "doughnut",
             data: {
                 labels: ["VISION", "WALTON", "SAMSUNG", "ARAFAT", "OTHERS"],
                 datasets: [{
-                    label: "Sales by Brand",
                     data: [12, 9, 4, 3, 5],
-                    backgroundColor: [
-                        `rgb(${getCssVar('--bs-primary-rgb')})`,
-                        `rgb(${getCssVar('--bs-success-rgb')})`,
-                        `rgb(${getCssVar('--bs-warning-rgb')})`,
-                        '#495057',
-                        '#ced4da'
-                    ],
-                    borderColor: getCssVar('--bs-body-bg'),
+                    backgroundColor: [`rgb(${getCssVar('--bs-primary-rgb')})`, `rgb(${getCssVar('--bs-success-rgb')})`, `rgb(${getCssVar('--bs-warning-rgb')})`, '#495057', '#ced4da'],
                     hoverOffset: 8
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '70%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: { family: "'Poppins', sans-serif" },
-                            usePointStyle: true,
-                            boxWidth: 8
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: '#212529',
-                        titleFont: { family: "'Poppins', sans-serif", weight: 'bold' },
-                        bodyFont: { family: "'Poppins', sans-serif" }
-                    }
-                }
-            }
+            options: { responsive: true, maintainAspectRatio: false, cutout: '70%' }
         });
     </script>
 </body>
