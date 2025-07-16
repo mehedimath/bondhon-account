@@ -1,327 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sales Report - Bondhon Enterprise</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <!-- Custom Styles (Same as Dashboard) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        padding: 70px 0 0;
+        background-color: #f8f9fa;
+        color: #212529;
+        height: 100vh;
+        overflow-y: auto;
+      }
+
+      .sidebar .nav-link {
+        color: #212529;
+        padding: 10px 20px;
+      }
+
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        color: #212529;
+        background-color: #e4e5e6;
+      }
+
+      .sidebar .nav-link .fa {
+        width: 20px;
+        text-align: center;
+        margin-right: 10px;
+      }
+
+      .nav-sub-link {
+        margin-left: 50px;
+      }
+
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        padding-top: 70px;
+      }
+
+      .navbar {
+        z-index: 1030;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+      }
+
+      /* Styles for printing */
+      @media print {
         body {
-            background-color: #f8f9fa;
+          background-color: #fff;
         }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            padding: 70px 0 0;
-            background-color: #f8f9fa;
-            ;
-            color: #212529;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .sidebar .nav-link {
-            color: #212529;
-            padding: 10px 20px
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #212529;
-            background-color: #e4e5e6
-        }
-
-        .sidebar .nav-link .fa {
-            width: 20px;
-            text-align: center;
-            margin-right: 10px
-        }
-
-        .nav-sub-link {
-            margin-left: 50px;
+        .sidebar,
+        .navbar,
+        .filter-card,
+        .header-buttons {
+          display: none !important;
         }
 
         .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            padding-top: 70px;
+          margin-left: 0;
+          padding: 0;
         }
 
-        .navbar {
-            z-index: 1030;
+        .card {
+          border: 1px solid #dee2e6 !important;
+          box-shadow: none !important;
         }
 
-        .navbar-brand {
-            font-weight: bold;
+        .card-body,
+        .card-header {
+          padding: 0.5rem !important;
         }
-
-        /* Styles for printing */
-        @media print {
-            body {
-                background-color: #fff;
-            }
-
-            .sidebar,
-            .navbar,
-            .filter-card,
-            .header-buttons {
-                display: none !important;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 0;
-            }
-
-            .card {
-                border: 1px solid #dee2e6 !important;
-                box-shadow: none !important;
-            }
-
-            .card-body,
-            .card-header {
-                padding: 0.5rem !important;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Top Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
-            <!-- User Info and Logout Button -->
-            <div class="ms-auto d-flex align-items-center">
-                <div class="user-info me-3">
-                    <i class="fa fa-user-circle"></i> Admin
-                </div>
-                <a href="index.html" class="btn btn-outline-light btn-sm">
-                    <i class="fa fa-sign-out-alt me-1"></i>Logout
-                </a>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+        <!-- User Info and Logout Button -->
+        <div class="ms-auto d-flex align-items-center">
+          <div class="user-info me-3">
+            <i class="fa fa-user-circle"></i> Admin
+          </div>
+          <a href="index.html" class="btn btn-outline-light btn-sm">
+            <i class="fa fa-sign-out-alt me-1"></i>Logout
+          </a>
         </div>
+      </div>
     </nav>
-
 
     <!-- Sidebar -->
 
     <div class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
-            <a class="nav-link" href="all-create.html"><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a>
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="contactsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
-                    <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="inventoryCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
-                    <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
-                    <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="purchasesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchase Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
-                    <a class="nav-link nav-sub-link" href="purchase_list.html">Purchase List</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="salesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
-                    <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
-                    <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="financeCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
-                </nav>
-            </div>
-            <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
-                aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse">
-                <nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI
-                        Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a
-                        class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="reportsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
-                    <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
-                    <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
-                </nav>
-            </div>
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="dashboard.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a
+        >
+        <a class="nav-link" href="all-create.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a
+        >
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#contactsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-users fa-fw"></i> Contacts
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="contactsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="customers-list.html"
+              >Customers</a
+            >
+            <a class="nav-link nav-sub-link" href="suppliers-manage.html"
+              >Suppliers</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#inventoryCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-box-open fa-fw"></i> Inventory
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="inventoryCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="inventory-products.html"
+              >Product List</a
+            >
+            <a class="nav-link nav-sub-link" href="items-manage.html"
+              >Item Categories</a
+            >
+            <a class="nav-link nav-sub-link" href="brands-manage.html"
+              >Brands</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#purchasesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-shopping-cart fa-fw"></i> Purchases
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="purchasesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="purchases-create.html"
+              >New Purchase</a
+            >
+            <a class="nav-link nav-sub-link" href="purchase_list.html"
+              >Purchase List</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#salesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="salesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="sales-create.html"
+              >New Invoice</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-manage-invoices.html"
+              >Invoice List</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-return-create.html"
+              >Process Return</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#financeCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-wallet fa-fw"></i> Finance
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="financeCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="expenses-manage.html"
+              >Manage Expenses</a
+            >
+          </nav>
+        </div>
+        <!-- New Collection Links -->
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#collectionsCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="collectionsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="emi-collection.html"
+              >EMI Collection</a
+            ><a class="nav-link nav-sub-link" href="due-collection.html"
+              >Due Collection</a
+            ><a class="nav-link nav-sub-link" href="customer-ledger.html"
+              >Customer Ledger</a
+            >
+          </nav>
+        </div>
 
-            <a class="nav-link" data-bs-toggle="collapse" href="#accountingCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Accounts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="accountingCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="voucher_form.html">Voucher Posting</a>
-                    <a class="nav-link nav-sub-link" href="voucher-list.html">Voucher List</a><a
-                        class="nav-link nav-sub-link" href="trial-balance.html">Trial Balance</a>
-                </nav>
-            </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#accountingCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Accounting
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="accountingCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="account-dashboard.html"
+              >Accounts Dashboard</a
+            ><a class="nav-link nav-sub-link" href="voucher_form.html"
+              >Voucher Entry</a
+            ><a class="nav-link nav-sub-link" href="voucher-list.html"
+              >Voucher List</a
+            ><a class="nav-link nav-sub-link" href="trial-balance.html"
+              >Trial Balance</a
+            ><a class="nav-link nav-sub-link" href="balance-sheet.html"
+              >Balance Sheet</a
+            >
+          </nav>
+        </div>
 
-
-            <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
-        </nav>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#reportsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-chart-pie fa-fw"></i> Reports
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="reportsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="reports-sales.html"
+              >Sales Report</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-stock-ledger.html"
+              >Stock Ledger</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-customer-dues.html"
+              >Customer Dues</a
+            >
+          </nav>
+        </div>
+        <a class="nav-link" href="settings.html"
+          ><i class="fa fa-cog fa-fw"></i> Settings</a
+        >
+      </nav>
     </div>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container-fluid">
-            <!-- ADDED CLASS to wrapper div -->
-            <div class="d-flex justify-content-between align-items-center mb-4 header-buttons">
-                <h1 class="h3">Sales Report</h1>
-                <!-- NEW Print Button -->
-                <button class="btn btn-outline-secondary" id="printReportBtn">
-                    <i class="fa fa-print me-1"></i> Print Report
-                </button>
-            </div>
-
-
-            <!-- Filter Section -->
-            <!-- ADDED CLASS to filter card -->
-            <div class="card mb-4 filter-card">
-                <div class="card-body animate__animated animate__fadeInUp">
-                    <div class="row g-3 align-items-end">
-                        <div class="col-md-3">
-                            <label class="form-label">Start Date</label>
-                            <input type="date" class="form-control" value="2025-06-01">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">End Date</label>
-                            <input type="date" class="form-control" value="2025-06-30">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Customer</label>
-                            <select class="form-select">
-                                <option selected>All Customers</option>
-                                <option>Md. Mahfooz</option>
-                                <option>Sobita Rani</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <!-- ADDED ID to button -->
-                            <button class="btn btn-primary w-100" id="generateReportBtn">Generate Report</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Report Summary -->
-            <div class="row mb-4 animate__animated animate__fadeInUp">
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary">
-                        <div class="card-body">
-                            <div class="fs-4 fw-bold">৳ 1,029,540</div>
-                            <div class="small">Total Sales Revenue</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-info">
-                        <div class="card-body">
-                            <div class="fs-4 fw-bold">25</div>
-                            <div class="small">Total Invoices Created</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-white bg-secondary">
-                        <div class="card-body">
-                            <div class="fs-4 fw-bold">43</div>
-                            <div class="small">Total Units Sold</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sales by Product Table -->
-            <div class="card">
-                <div class="card-header">
-                    Top Selling Products (June 2025)
-                </div>
-                <div class="card-body animate__animated animate__fadeInUp">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Sales Item Model</th>
-                                    <th class="text-center">Qty. Sold</th>
-                                    <th class="text-end">Total Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>43E40Z|SMART TV|VISION|25200</td>
-                                    <td class="text-center">12</td>
-                                    <td class="text-end">৳ 302,400</td>
-                                </tr>
-                                <tr>
-                                    <td>WFA-2A3-GDXX-XX|REFRIGERATOR|WALTON|27605</td>
-                                    <td class="text-center">5</td>
-                                    <td class="text-end">৳ 138,025</td>
-                                </tr>
-                                <tr>
-                                    <td>WFD-1F3-GDEL-XX|REFRIGERATOR|WALTON|26044</td>
-                                    <td class="text-center">4</td>
-                                    <td class="text-end">৳ 104,176</td>
-                                </tr>
-                                <tr>
-                                    <td>COMFORT|CEILING FAN|BORAK|1680</td>
-                                    <td class="text-center">8</td>
-                                    <td class="text-end">৳ 13,440</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
+      <div class="container-fluid">
+        <!-- ADDED CLASS to wrapper div -->
+        <div
+          class="d-flex justify-content-between align-items-center mb-4 header-buttons"
+        >
+          <h1 class="h3">Sales Report</h1>
+          <!-- NEW Print Button -->
+          <button class="btn btn-outline-secondary" id="printReportBtn">
+            <i class="fa fa-print me-1"></i> Print Report
+          </button>
         </div>
+
+        <!-- Filter Section -->
+        <!-- ADDED CLASS to filter card -->
+        <div class="card mb-4 filter-card">
+          <div class="card-body animate__animated animate__fadeInUp">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-3">
+                <label class="form-label">Start Date</label>
+                <input type="date" class="form-control" value="2025-06-01" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">End Date</label>
+                <input type="date" class="form-control" value="2025-06-30" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Customer</label>
+                <select class="form-select">
+                  <option selected>All Customers</option>
+                  <option>Md. Mahfooz</option>
+                  <option>Sobita Rani</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <!-- ADDED ID to button -->
+                <button class="btn btn-primary w-100" id="generateReportBtn">
+                  Generate Report
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Report Summary -->
+        <div class="row mb-4 animate__animated animate__fadeInUp">
+          <div class="col-md-4">
+            <div class="card text-white bg-primary">
+              <div class="card-body">
+                <div class="fs-4 fw-bold">৳ 1,029,540</div>
+                <div class="small">Total Sales Revenue</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-white bg-info">
+              <div class="card-body">
+                <div class="fs-4 fw-bold">25</div>
+                <div class="small">Total Invoices Created</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card text-white bg-secondary">
+              <div class="card-body">
+                <div class="fs-4 fw-bold">43</div>
+                <div class="small">Total Units Sold</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sales by Product Table -->
+        <div class="card">
+          <div class="card-header">Top Selling Products (June 2025)</div>
+          <div class="card-body animate__animated animate__fadeInUp">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Sales Item Model</th>
+                    <th class="text-center">Qty. Sold</th>
+                    <th class="text-end">Total Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>43E40Z|SMART TV|VISION|25200</td>
+                    <td class="text-center">12</td>
+                    <td class="text-end">৳ 302,400</td>
+                  </tr>
+                  <tr>
+                    <td>WFA-2A3-GDXX-XX|REFRIGERATOR|WALTON|27605</td>
+                    <td class="text-center">5</td>
+                    <td class="text-end">৳ 138,025</td>
+                  </tr>
+                  <tr>
+                    <td>WFD-1F3-GDEL-XX|REFRIGERATOR|WALTON|26044</td>
+                    <td class="text-center">4</td>
+                    <td class="text-end">৳ 104,176</td>
+                  </tr>
+                  <tr>
+                    <td>COMFORT|CEILING FAN|BORAK|1680</td>
+                    <td class="text-center">8</td>
+                    <td class="text-end">৳ 13,440</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Bootstrap Bundle -->
@@ -329,35 +429,36 @@
 
     <!-- NEW JAVASCRIPT LOGIC -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const generateBtn = document.getElementById('generateReportBtn');
-            const printBtn = document.getElementById('printReportBtn');
+      document.addEventListener("DOMContentLoaded", () => {
+        const generateBtn = document.getElementById("generateReportBtn");
+        const printBtn = document.getElementById("printReportBtn");
 
-            // --- Generate Report Button Logic ---
-            generateBtn.addEventListener('click', () => {
-                const originalText = generateBtn.innerHTML;
+        // --- Generate Report Button Logic ---
+        generateBtn.addEventListener("click", () => {
+          const originalText = generateBtn.innerHTML;
 
-                // Show loading state
-                generateBtn.disabled = true;
-                generateBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...`;
+          // Show loading state
+          generateBtn.disabled = true;
+          generateBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...`;
 
-                // Simulate a data fetch
-                setTimeout(() => {
-                    // Restore button
-                    generateBtn.disabled = false;
-                    generateBtn.innerHTML = originalText;
+          // Simulate a data fetch
+          setTimeout(() => {
+            // Restore button
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = originalText;
 
-                    // Give user feedback
-                    alert('Report has been updated based on your filters! (This is a simulation)');
-                }, 1500); // 1.5 second delay
-            });
-
-            // --- Print Report Button Logic ---
-            printBtn.addEventListener('click', () => {
-                window.print();
-            });
+            // Give user feedback
+            alert(
+              "Report has been updated based on your filters! (This is a simulation)"
+            );
+          }, 1500); // 1.5 second delay
         });
-    </script>
-</body>
 
+        // --- Print Report Button Logic ---
+        printBtn.addEventListener("click", () => {
+          window.print();
+        });
+      });
+    </script>
+  </body>
 </html>

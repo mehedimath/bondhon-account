@@ -1,306 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Expenses - Bondhon Enterprise</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <!-- Custom Styles (Same as Dashboard) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+      body {
+        background-color: #f8f9fa;
+      }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            padding: 70px 0 0;
-            background-color: #f8f9fa;
-            color: #212529;
-            height: 100vh;
-            overflow-y: auto;
-        }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        padding: 70px 0 0;
+        background-color: #f8f9fa;
+        color: #212529;
+        height: 100vh;
+        overflow-y: auto;
+      }
 
-        .sidebar .nav-link {
-            color: #212529;
-            padding: 10px 20px
-        }
+      .sidebar .nav-link {
+        color: #212529;
+        padding: 10px 20px;
+      }
 
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #212529;
-            background-color: #e4e5e6
-        }
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        color: #212529;
+        background-color: #e4e5e6;
+      }
 
-        .sidebar .nav-link .fa {
-            width: 20px;
-            text-align: center;
-            margin-right: 10px
-        }
+      .sidebar .nav-link .fa {
+        width: 20px;
+        text-align: center;
+        margin-right: 10px;
+      }
 
-        .nav-sub-link {
-            margin-left: 50px;
-        }
+      .nav-sub-link {
+        margin-left: 50px;
+      }
 
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            padding-top: 70px;
-        }
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        padding-top: 70px;
+      }
 
-        .navbar {
-            z-index: 1030;
-        }
+      .navbar {
+        z-index: 1030;
+      }
 
-        .navbar-brand {
-            font-weight: bold;
-        }
+      .navbar-brand {
+        font-weight: bold;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Top Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
-            <!-- User Info and Logout Button -->
-            <div class="ms-auto d-flex align-items-center">
-                <div class="user-info me-3">
-                    <i class="fa fa-user-circle"></i> Admin
-                </div>
-                <a href="index.html" class="btn btn-outline-light btn-sm">
-                    <i class="fa fa-sign-out-alt me-1"></i>Logout
-                </a>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+        <!-- User Info and Logout Button -->
+        <div class="ms-auto d-flex align-items-center">
+          <div class="user-info me-3">
+            <i class="fa fa-user-circle"></i> Admin
+          </div>
+          <a href="index.html" class="btn btn-outline-light btn-sm">
+            <i class="fa fa-sign-out-alt me-1"></i>Logout
+          </a>
         </div>
+      </div>
     </nav>
-
-
 
     <!-- Sidebar -->
 
     <div class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
-            <a class="nav-link" href="all-create.html"><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a>
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="contactsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
-                    <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="inventoryCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
-                    <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
-                    <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="purchasesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchase Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
-                    <a class="nav-link nav-sub-link" href="purchase_list.html">Purchase List</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="salesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
-                    <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
-                    <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="financeCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
-                </nav>
-            </div>
-            <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
-                aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse">
-                <nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI
-                        Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a
-                        class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="reportsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
-                    <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
-                    <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
-                </nav>
-            </div>
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="dashboard.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a
+        >
+        <a class="nav-link" href="all-create.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a
+        >
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#contactsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-users fa-fw"></i> Contacts
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="contactsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="customers-list.html"
+              >Customers</a
+            >
+            <a class="nav-link nav-sub-link" href="suppliers-manage.html"
+              >Suppliers</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#inventoryCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-box-open fa-fw"></i> Inventory
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="inventoryCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="inventory-products.html"
+              >Product List</a
+            >
+            <a class="nav-link nav-sub-link" href="items-manage.html"
+              >Item Categories</a
+            >
+            <a class="nav-link nav-sub-link" href="brands-manage.html"
+              >Brands</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#purchasesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-shopping-cart fa-fw"></i> Purchases
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="purchasesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="purchases-create.html"
+              >New Purchase</a
+            >
+            <a class="nav-link nav-sub-link" href="purchase_list.html"
+              >Purchase List</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#salesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="salesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="sales-create.html"
+              >New Invoice</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-manage-invoices.html"
+              >Invoice List</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-return-create.html"
+              >Process Return</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#financeCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-wallet fa-fw"></i> Finance
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="financeCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="expenses-manage.html"
+              >Manage Expenses</a
+            >
+          </nav>
+        </div>
+        <!-- New Collection Links -->
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#collectionsCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="collectionsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="emi-collection.html"
+              >EMI Collection</a
+            ><a class="nav-link nav-sub-link" href="due-collection.html"
+              >Due Collection</a
+            ><a class="nav-link nav-sub-link" href="customer-ledger.html"
+              >Customer Ledger</a
+            >
+          </nav>
+        </div>
 
-            <a class="nav-link" data-bs-toggle="collapse" href="#accountingCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Accounts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="accountingCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="voucher_form.html">Voucher Posting</a>
-                    <a class="nav-link nav-sub-link" href="voucher-list.html">Voucher List</a><a
-                        class="nav-link nav-sub-link" href="trial-balance.html">Trial Balance</a>
-                </nav>
-            </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#accountingCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Accounting
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="accountingCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="account-dashboard.html"
+              >Accounts Dashboard</a
+            ><a class="nav-link nav-sub-link" href="voucher_form.html"
+              >Voucher Entry</a
+            ><a class="nav-link nav-sub-link" href="voucher-list.html"
+              >Voucher List</a
+            ><a class="nav-link nav-sub-link" href="trial-balance.html"
+              >Trial Balance</a
+            ><a class="nav-link nav-sub-link" href="balance-sheet.html"
+              >Balance Sheet</a
+            >
+          </nav>
+        </div>
 
-
-            <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
-        </nav>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#reportsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-chart-pie fa-fw"></i> Reports
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="reportsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="reports-sales.html"
+              >Sales Report</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-stock-ledger.html"
+              >Stock Ledger</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-customer-dues.html"
+              >Customer Dues</a
+            >
+          </nav>
+        </div>
+        <a class="nav-link" href="settings.html"
+          ><i class="fa fa-cog fa-fw"></i> Settings</a
+        >
+      </nav>
     </div>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container-fluid">
-            <h1 class="h3 mb-4">Manage Daily Expenses</h1>
+      <div class="container-fluid">
+        <h1 class="h3 mb-4">Manage Daily Expenses</h1>
 
-            <!-- Add Expense Form -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    Add New Expense Entry
-                </div>
-                <div class="card-body animate__animated animate__fadeInUp">
-                    <!-- ADDED ID TO FORM -->
-                    <form class="row g-3 align-items-end" id="addExpenseForm">
-                        <div class="col-md-2">
-                            <label for="expenseDate" class="form-label">Date*</label>
-                            <input type="date" class="form-control" id="expenseDate" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="expenseCategory" class="form-label">Name of Expenditure</label>
-                            <select id="expenseCategory" class="form-select">
-                                <option>Entertainment -Customer</option>
-                                <option>Entertainment -Office</option>
-                                <option>Cash Deposit to Bank (Contra)</option>
-                                <option>Office Maintenance</option>
-                                <option>Rent</option>
-                                <option>Stationeries</option>
-                                <option>Labor Charge</option>
-                                <option>Profit Distribution</option>
-                                <option>Loan Refund to Director</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="paidTo" class="form-label">Paid to / Details</label>
-                            <input type="text" class="form-control" id="paidTo"
-                                placeholder="e.g. Shutter Repair, MD. Iqbal">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="expenseAmount" class="form-label">Amount*</label>
-                            <input type="number" class="form-control" id="expenseAmount" placeholder="e.g. 5000"
-                                required>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary w-100"><i class="fa fa-plus me-1"></i> Add
-                                Expense</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Expenses List -->
-            <div class="card">
-                <div class="card-header">
-                    Recent Expenses Log
-                </div>
-                <div class="card-body animate__animated animate__fadeInUp">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Name of Expenditure</th>
-                                    <th>Type</th>
-                                    <th>Paid to / Remarks</th>
-                                    <th class="text-end">Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <!-- ADDED ID TO TBODY -->
-                            <tbody id="expensesTableBody">
-                                <!-- Data from 'Transaction of Daily Expenses' -->
-                                <tr>
-                                    <td>7-Mar-25</td>
-                                    <td>Profit Distribution</td>
-                                    <td><span class="badge bg-secondary">Payment</span></td>
-                                    <td>Director, MD. Iqbal</td>
-                                    <td class="text-end">৳ 20,000</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-danger delete-expense-btn"><i
-                                                class="fa fa-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>7-Mar-25</td>
-                                    <td>Loan Refund to Director</td>
-                                    <td><span class="badge bg-secondary">Payment</span></td>
-                                    <td>Director, MD. Mokshed</td>
-                                    <td class="text-end">৳ 50,000</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-danger delete-expense-btn"><i
-                                                class="fa fa-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>6-Mar-25</td>
-                                    <td>Rent</td>
-                                    <td><span class="badge bg-secondary">Payment</span></td>
-                                    <td></td>
-                                    <td class="text-end">৳ 19,000</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-danger delete-expense-btn"><i
-                                                class="fa fa-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>4-Mar-25</td>
-                                    <td>Cash Deposit to Bank (Contra)</td>
-                                    <td><span class="badge bg-warning text-dark">Deposit</span></td>
-                                    <td></td>
-                                    <td class="text-end">৳ 200,000</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-danger delete-expense-btn"><i
-                                                class="fa fa-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>1-Mar-25</td>
-                                    <td>Office Maintenance</td>
-                                    <td><span class="badge bg-secondary">Payment</span></td>
-                                    <td>Store House #1, Shutter Repair</td>
-                                    <td class="text-end">৳ 250</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-danger delete-expense-btn"><i
-                                                class="fa fa-trash"></i></a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <!-- Add Expense Form -->
+        <div class="card mb-4">
+          <div class="card-header">Add New Expense Entry</div>
+          <div class="card-body animate__animated animate__fadeInUp">
+            <!-- ADDED ID TO FORM -->
+            <form class="row g-3 align-items-end" id="addExpenseForm">
+              <div class="col-md-2">
+                <label for="expenseDate" class="form-label">Date*</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="expenseDate"
+                  required
+                />
+              </div>
+              <div class="col-md-3">
+                <label for="expenseCategory" class="form-label"
+                  >Name of Expenditure</label
+                >
+                <select id="expenseCategory" class="form-select">
+                  <option>Entertainment -Customer</option>
+                  <option>Entertainment -Office</option>
+                  <option>Cash Deposit to Bank (Contra)</option>
+                  <option>Office Maintenance</option>
+                  <option>Rent</option>
+                  <option>Stationeries</option>
+                  <option>Labor Charge</option>
+                  <option>Profit Distribution</option>
+                  <option>Loan Refund to Director</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label for="paidTo" class="form-label">Paid to / Details</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="paidTo"
+                  placeholder="e.g. Shutter Repair, MD. Iqbal"
+                />
+              </div>
+              <div class="col-md-2">
+                <label for="expenseAmount" class="form-label">Amount*</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="expenseAmount"
+                  placeholder="e.g. 5000"
+                  required
+                />
+              </div>
+              <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                  <i class="fa fa-plus me-1"></i> Add Expense
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
+
+        <!-- Expenses List -->
+        <div class="card">
+          <div class="card-header">Recent Expenses Log</div>
+          <div class="card-body animate__animated animate__fadeInUp">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Date</th>
+                    <th>Name of Expenditure</th>
+                    <th>Type</th>
+                    <th>Paid to / Remarks</th>
+                    <th class="text-end">Amount</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <!-- ADDED ID TO TBODY -->
+                <tbody id="expensesTableBody">
+                  <!-- Data from 'Transaction of Daily Expenses' -->
+                  <tr>
+                    <td>7-Mar-25</td>
+                    <td>Profit Distribution</td>
+                    <td><span class="badge bg-secondary">Payment</span></td>
+                    <td>Director, MD. Iqbal</td>
+                    <td class="text-end">৳ 20,000</td>
+                    <td>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-danger delete-expense-btn"
+                        ><i class="fa fa-trash"></i
+                      ></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7-Mar-25</td>
+                    <td>Loan Refund to Director</td>
+                    <td><span class="badge bg-secondary">Payment</span></td>
+                    <td>Director, MD. Mokshed</td>
+                    <td class="text-end">৳ 50,000</td>
+                    <td>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-danger delete-expense-btn"
+                        ><i class="fa fa-trash"></i
+                      ></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6-Mar-25</td>
+                    <td>Rent</td>
+                    <td><span class="badge bg-secondary">Payment</span></td>
+                    <td></td>
+                    <td class="text-end">৳ 19,000</td>
+                    <td>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-danger delete-expense-btn"
+                        ><i class="fa fa-trash"></i
+                      ></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4-Mar-25</td>
+                    <td>Cash Deposit to Bank (Contra)</td>
+                    <td>
+                      <span class="badge bg-warning text-dark">Deposit</span>
+                    </td>
+                    <td></td>
+                    <td class="text-end">৳ 200,000</td>
+                    <td>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-danger delete-expense-btn"
+                        ><i class="fa fa-trash"></i
+                      ></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1-Mar-25</td>
+                    <td>Office Maintenance</td>
+                    <td><span class="badge bg-secondary">Payment</span></td>
+                    <td>Store House #1, Shutter Repair</td>
+                    <td class="text-end">৳ 250</td>
+                    <td>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-danger delete-expense-btn"
+                        ><i class="fa fa-trash"></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Bootstrap Bundle -->
@@ -308,39 +448,47 @@
 
     <!-- NEW JAVASCRIPT LOGIC -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const expenseForm = document.getElementById('addExpenseForm');
-            const expensesTableBody = document.getElementById('expensesTableBody');
+      document.addEventListener("DOMContentLoaded", () => {
+        const expenseForm = document.getElementById("addExpenseForm");
+        const expensesTableBody = document.getElementById("expensesTableBody");
 
-            // --- Handle Form Submission to Add New Expense ---
-            expenseForm.addEventListener('submit', (e) => {
-                e.preventDefault(); // Prevent the default browser form submission
+        // --- Handle Form Submission to Add New Expense ---
+        expenseForm.addEventListener("submit", (e) => {
+          e.preventDefault(); // Prevent the default browser form submission
 
-                // Get values from the form
-                const date = document.getElementById('expenseDate').value;
-                const category = document.getElementById('expenseCategory').value;
-                const paidTo = document.getElementById('paidTo').value;
-                const amount = parseFloat(document.getElementById('expenseAmount').value);
+          // Get values from the form
+          const date = document.getElementById("expenseDate").value;
+          const category = document.getElementById("expenseCategory").value;
+          const paidTo = document.getElementById("paidTo").value;
+          const amount = parseFloat(
+            document.getElementById("expenseAmount").value
+          );
 
-                // Simple validation
-                if (!date || !amount) {
-                    alert('Date and Amount are required fields.');
-                    return;
-                }
+          // Simple validation
+          if (!date || !amount) {
+            alert("Date and Amount are required fields.");
+            return;
+          }
 
-                // Determine the expense type and badge color
-                let typeText = 'Payment';
-                let typeBadgeClass = 'bg-secondary';
-                if (category.toLowerCase().includes('deposit')) {
-                    typeText = 'Deposit';
-                    typeBadgeClass = 'bg-warning text-dark';
-                }
+          // Determine the expense type and badge color
+          let typeText = "Payment";
+          let typeBadgeClass = "bg-secondary";
+          if (category.toLowerCase().includes("deposit")) {
+            typeText = "Deposit";
+            typeBadgeClass = "bg-warning text-dark";
+          }
 
-                // Format date to dd-MMM-yy style for consistency
-                const formattedDate = new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: '2-digit' }).replace(/ /g, '-');
+          // Format date to dd-MMM-yy style for consistency
+          const formattedDate = new Date(date)
+            .toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "short",
+              year: "2-digit",
+            })
+            .replace(/ /g, "-");
 
-                // Create the HTML for the new table row
-                const newRowHtml = `
+          // Create the HTML for the new table row
+          const newRowHtml = `
                     <tr>
                         <td>${formattedDate}</td>
                         <td>${category}</td>
@@ -350,33 +498,34 @@
                         <td><a href="#" class="btn btn-sm btn-outline-danger delete-expense-btn"><i class="fa fa-trash"></i></a></td>
                     </tr>`;
 
-                // Add the new row to the top of the table
-                expensesTableBody.insertAdjacentHTML('afterbegin', newRowHtml);
+          // Add the new row to the top of the table
+          expensesTableBody.insertAdjacentHTML("afterbegin", newRowHtml);
 
-                // Reset the form for the next entry
-                expenseForm.reset();
-                document.getElementById('expenseDate').valueAsDate = new Date(); // Set date to today after reset
-            });
-
-            // --- Handle Deleting an Expense using Event Delegation ---
-            expensesTableBody.addEventListener('click', (e) => {
-                // Find the closest delete button to where the user clicked
-                const deleteBtn = e.target.closest('.delete-expense-btn');
-
-                if (deleteBtn) {
-                    e.preventDefault(); // Stop the link from trying to navigate
-
-                    if (confirm('Are you sure you want to delete this expense entry?')) {
-                        // Find the closest table row (tr) and remove it
-                        deleteBtn.closest('tr').remove();
-                    }
-                }
-            });
-
-            // Set the initial date in the form to today
-            document.getElementById('expenseDate').valueAsDate = new Date();
+          // Reset the form for the next entry
+          expenseForm.reset();
+          document.getElementById("expenseDate").valueAsDate = new Date(); // Set date to today after reset
         });
-    </script>
-</body>
 
+        // --- Handle Deleting an Expense using Event Delegation ---
+        expensesTableBody.addEventListener("click", (e) => {
+          // Find the closest delete button to where the user clicked
+          const deleteBtn = e.target.closest(".delete-expense-btn");
+
+          if (deleteBtn) {
+            e.preventDefault(); // Stop the link from trying to navigate
+
+            if (
+              confirm("Are you sure you want to delete this expense entry?")
+            ) {
+              // Find the closest table row (tr) and remove it
+              deleteBtn.closest("tr").remove();
+            }
+          }
+        });
+
+        // Set the initial date in the form to today
+        document.getElementById("expenseDate").valueAsDate = new Date();
+      });
+    </script>
+  </body>
 </html>

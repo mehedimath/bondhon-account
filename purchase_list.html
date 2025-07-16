@@ -1,452 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Purchase List - Bondhon Enterprise</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <!-- Custom Styles (Same as Dashboard) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+      body {
+        background-color: #f8f9fa;
+      }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            padding: 70px 0 0;
-            background-color: #f8f9fa;
-            color: #212529;
-            height: 100vh;
-            overflow-y: auto;
-        }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        padding: 70px 0 0;
+        background-color: #f8f9fa;
+        color: #212529;
+        height: 100vh;
+        overflow-y: auto;
+      }
 
-        .sidebar .nav-link {
-            color: #212529;
-            padding: 10px 20px
-        }
+      .sidebar .nav-link {
+        color: #212529;
+        padding: 10px 20px;
+      }
 
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #212529;
-            background-color: #e4e5e6
-        }
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        color: #212529;
+        background-color: #e4e5e6;
+      }
 
-        .sidebar .nav-link .fa {
-            width: 20px;
-            text-align: center;
-            margin-right: 10px
-        }
+      .sidebar .nav-link .fa {
+        width: 20px;
+        text-align: center;
+        margin-right: 10px;
+      }
 
-        .nav-sub-link {
-            margin-left: 50px;
-        }
+      .nav-sub-link {
+        margin-left: 50px;
+      }
 
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            padding-top: 70px;
-        }
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        padding-top: 70px;
+      }
 
-        .navbar {
-            z-index: 1030;
-        }
+      .navbar {
+        z-index: 1030;
+      }
 
-        .navbar-brand {
-            font-weight: bold;
-        }
+      .navbar-brand {
+        font-weight: bold;
+      }
 
-        .due-amount {
-            color: #dc3545;
-            font-weight: 500
-        }
+      .due-amount {
+        color: #dc3545;
+        font-weight: 500;
+      }
+      .modal-dialog-lg {
+        max-width: 800px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Top Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
-            <!-- User Info and Logout Button -->
-            <div class="ms-auto d-flex align-items-center">
-                <div class="text-white me-3">
-                    <i class="fa fa-user-circle"></i> Admin
-                </div>
-                <a href="index.html" class="btn btn-outline-light btn-sm">
-                    <i class="fa fa-sign-out-alt me-1"></i>Logout
-                </a>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+        <!-- User Info and Logout Button -->
+        <div class="ms-auto d-flex align-items-center">
+          <div class="text-white me-3">
+            <i class="fa fa-user-circle"></i> Admin
+          </div>
+          <a href="index.html" class="btn btn-outline-light btn-sm">
+            <i class="fa fa-sign-out-alt me-1"></i>Logout
+          </a>
         </div>
+      </div>
     </nav>
 
+    <!-- Sidebar -->
 
     <div class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
-            <a class="nav-link" href="all-create.html"><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a>
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="contactsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
-                    <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="inventoryCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
-                    <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
-                    <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="purchasesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchase Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
-                    <a class="nav-link nav-sub-link" href="purchase_list.html">Purchase List</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="salesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
-                    <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
-                    <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="financeCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
-                </nav>
-            </div>
-            <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
-                aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse">
-                <nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI
-                        Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a
-                        class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="reportsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
-                    <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
-                    <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
-                </nav>
-            </div>
-
-            <a class="nav-link" data-bs-toggle="collapse" href="#accountingCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Accounts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="accountingCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="voucher_form.html">Voucher Posting</a>
-                    <a class="nav-link nav-sub-link" href="voucher-list.html">Voucher List</a><a
-                        class="nav-link nav-sub-link" href="trial-balance.html">Trial Balance</a>
-                </nav>
-            </div>
-
-
-            <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
-        </nav>
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="dashboard.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a
+        >
+        <a class="nav-link" href="all-create.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a
+        >
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#contactsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-users fa-fw"></i> Contacts
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="contactsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="customers-list.html"
+              >Customers</a
+            >
+            <a class="nav-link nav-sub-link" href="suppliers-manage.html"
+              >Suppliers</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#inventoryCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-box-open fa-fw"></i> Inventory
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="inventoryCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="inventory-products.html"
+              >Product List</a
+            >
+            <a class="nav-link nav-sub-link" href="items-manage.html"
+              >Item Categories</a
+            >
+            <a class="nav-link nav-sub-link" href="brands-manage.html"
+              >Brands</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#purchasesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-shopping-cart fa-fw"></i> Purchases
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="purchasesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="purchases-create.html"
+              >New Purchase</a
+            >
+            <a class="nav-link nav-sub-link" href="purchase_list.html"
+              >Purchase List</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#salesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="salesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="sales-create.html"
+              >New Invoice</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-manage-invoices.html"
+              >Invoice List</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-return-create.html"
+              >Process Return</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#financeCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-wallet fa-fw"></i> Finance
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="financeCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="expenses-manage.html"
+              >Manage Expenses</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#accountingCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Accounting
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="accountingCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="account-dashboard.html"
+              >Accounts Dashboard</a
+            ><a class="nav-link nav-sub-link" href="voucher_form.html"
+              >Voucher Entry</a
+            ><a class="nav-link nav-sub-link" href="voucher-list.html"
+              >Voucher List</a
+            ><a class="nav-link nav-sub-link" href="trial-balance.html"
+              >Trial Balance</a
+            ><a class="nav-link nav-sub-link" href="balance-sheet.html"
+              >Balance Sheet</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#reportsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-chart-pie fa-fw"></i> Reports
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="reportsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="reports-sales.html"
+              >Sales Report</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-stock-ledger.html"
+              >Stock Ledger</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-customer-dues.html"
+              >Customer Dues</a
+            >
+          </nav>
+        </div>
+        <a class="nav-link" href="settings.html"
+          ><i class="fa fa-cog fa-fw"></i> Settings</a
+        >
+      </nav>
     </div>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Purchase List</h1>
-                <a href="purchases-create.html" class="btn btn-primary"><i class="fa fa-plus me-1"></i> Record New
-                    Purchase</a>
-            </div>
-
-            <div class="card animate__animated animate__fadeInUp">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>All Purchases</span>
-                    <input type="text" class="form-control form-control-sm w-50" id="purchaseSearchInput"
-                        placeholder="Search by Supplier, Ref #, or Status...">
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Ref #</th>
-                                    <th>Supplier</th>
-                                    <th class="text-end">Total Amount</th>
-                                    <th class="text-end">Paid</th>
-                                    <th class="text-end">Due</th>
-                                    <th class="text-center">Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="purchaseTableBody">
-                                <!-- Data Rows will be manipulated by JS -->
-                                <tr data-id="1">
-                                    <td>23-Feb-2025</td>
-                                    <td class="ref-no">BILL-0154</td>
-                                    <td class="supplier">Saleha Electronics</td>
-                                    <td class="text-end total-amount">131008</td>
-                                    <td class="text-end paid-amount">131008</td>
-                                    <td class="text-end due-amount">0</td>
-                                    <td class="text-center status-cell"><span class="badge bg-success">Received</span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-secondary view-btn"
-                                            title="View Details"><i class="fa fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary edit-btn" title="Edit"><i
-                                                class="fa fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger delete-btn" title="Delete"><i
-                                                class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr data-id="2">
-                                    <td>22-Feb-2025</td>
-                                    <td class="ref-no">CH-551</td>
-                                    <td class="supplier">Bismillah Trade</td>
-                                    <td class="text-end total-amount">75500</td>
-                                    <td class="text-end paid-amount">50000</td>
-                                    <td class="text-end due-amount">25500</td>
-                                    <td class="text-center status-cell"><span
-                                            class="badge bg-warning text-dark">Partial</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-secondary view-btn"
-                                            title="View Details"><i class="fa fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-outline-success payment-btn"
-                                            title="Add Payment"><i class="fa fa-hand-holding-dollar"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary edit-btn" title="Edit"><i
-                                                class="fa fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger delete-btn" title="Delete"><i
-                                                class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr data-id="3">
-                                    <td>21-Feb-2025</td>
-                                    <td class="ref-no">N/A</td>
-                                    <td class="supplier">M/S, Mojumder Enterprise</td>
-                                    <td class="text-end total-amount">42000</td>
-                                    <td class="text-end paid-amount">0</td>
-                                    <td class="text-end due-amount">42000</td>
-                                    <td class="text-center status-cell"><span class="badge bg-danger">Pending</span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-secondary view-btn"
-                                            title="View Details"><i class="fa fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-outline-success payment-btn"
-                                            title="Add Payment"><i class="fa fa-hand-holding-dollar"></i></button>
-                                        <button class="btn btn-sm btn-outline-primary edit-btn" title="Edit"><i
-                                                class="fa fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger delete-btn" title="Delete"><i
-                                                class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h1 class="h3">Purchase List</h1>
+          <a href="purchases-create.html" class="btn btn-primary"
+            ><i class="fa fa-plus me-1"></i> Record New Purchase</a
+          >
         </div>
+
+        <div class="card animate__animated animate__fadeInUp">
+          <div
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <span>All Purchases</span>
+            <input
+              type="text"
+              class="form-control form-control-sm w-50"
+              id="purchaseSearchInput"
+              placeholder="Search by Supplier, Ref #, or Status..."
+            />
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Date</th>
+                    <th>Ref #</th>
+                    <th>Supplier</th>
+                    <th class="text-end">Subtotal</th>
+                    <th class="text-end">Discount</th>
+                    <th class="text-end">Total Amount</th>
+                    <th class="text-end">Paid</th>
+                    <th class="text-end">Due</th>
+                    <th class="text-center">Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="purchaseTableBody">
+                  <!-- JS will populate this -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- View Purchase Modal -->
     <div class="modal fade" id="viewPurchaseModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalTitle">Purchase Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p><strong>Supplier:</strong> <span id="modalSupplier"></span></p>
-                    <p><strong>Date:</strong> <span id="modalDate"></span></p>
-                    <p><strong>Reference #:</strong> <span id="modalRef"></span></p>
-                    <hr>
-                    <p><strong>Total Amount:</strong> <span id="modalTotal"></span></p>
-                    <p><strong>Amount Paid:</strong> <span id="modalPaid"></span></p>
-                    <p><strong>Amount Due:</strong> <span id="modalDue" class="fw-bold"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+      <div class="modal-dialog modal-dialog-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewModalTitle">Purchase Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p>
+                  <strong>Supplier:</strong> <span id="modalSupplier"></span>
+                </p>
+                <p><strong>Date:</strong> <span id="modalDate"></span></p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>Reference #:</strong> <span id="modalRef"></span></p>
+              </div>
             </div>
+
+            <h6 class="mt-4">Items Purchased</h6>
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th>Item/Model</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-end">Purchase Rate</th>
+                    <th class="text-end">MRP</th>
+                    <th class="text-end">Selling Price</th>
+                    <th class="text-end">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="modalItemsTbody">
+                  <!-- Items will be populated here by JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <p><strong>Remarks:</strong> <span id="modalRemarks"></span></p>
+              </div>
+              <div class="col-md-6">
+                <div class="text-end">
+                  <p class="mb-1">
+                    <strong>Subtotal:</strong> <span id="modalSubtotal"></span>
+                  </p>
+                  <p class="mb-1">
+                    <strong>Discount:</strong> <span id="modalDiscount"></span>
+                  </p>
+                  <hr class="my-1" />
+                  <h5 class="mb-1">
+                    <strong>Total:</strong> <span id="modalTotal"></span>
+                  </h5>
+                  <p class="mb-1">
+                    <strong>Paid:</strong> <span id="modalPaid"></span>
+                  </p>
+                  <p class="mb-1 text-danger">
+                    <strong>Due:</strong>
+                    <span id="modalDue" class="fw-bold"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Payment Modal -->
     <div class="modal fade" id="paymentModal" tabindex="-1">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Payment</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="paymentAmount" class="form-label">Payment Amount</label>
-                        <input type="number" class="form-control" id="paymentAmount" placeholder="e.g. 5000">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success" id="savePaymentBtn">Save Payment</button>
-                </div>
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Payment</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="paymentAmount" class="form-label"
+                >Payment Amount</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="paymentAmount"
+                placeholder="e.g. 5000"
+                min="0.01"
+                step="0.01"
+              />
             </div>
+            <input type="hidden" id="paymentPurchaseId" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-success" id="savePaymentBtn">
+              Save Payment
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-
 
     <!-- Bootstrap Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchInput = document.getElementById('purchaseSearchInput');
-            const tableBody = document.getElementById('purchaseTableBody');
-            const viewModal = new bootstrap.Modal(document.getElementById('viewPurchaseModal'));
-            const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-            let activeRow = null;
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- DATA ---
+        // In a real app, this would come from a server/database
+        let purchasesData = [
+          {
+            id: 1,
+            date: "2025-02-23",
+            refNo: "BILL-0154",
+            supplier: "Saleha Electronics",
+            subtotal: 131008,
+            discount: 0,
+            paid: 131008,
+            remarks: "Full payment received via bank transfer.",
+            items: [
+              {
+                name: "WFC-3F5-GDEL-XX",
+                qty: 2,
+                purchaseRate: 26044,
+                mrp: 29500,
+                sellingPrice: 28990,
+                amount: 52088,
+              },
+              {
+                name: "WFC-3X7-GDEL-DD (Inv)",
+                qty: 2,
+                purchaseRate: 39460,
+                mrp: 45000,
+                sellingPrice: 44500,
+                amount: 78920,
+              },
+            ],
+          },
+          {
+            id: 2,
+            date: "2025-02-22",
+            refNo: "CH-551",
+            supplier: "Bismillah Trade",
+            subtotal: 80000,
+            discount: 4500,
+            paid: 50000,
+            remarks: "Partial payment made. Remaining amount due next week.",
+            items: [
+              {
+                name: "GREE AC 1.5 TON",
+                qty: 1,
+                purchaseRate: 80000,
+                mrp: 92000,
+                sellingPrice: 89000,
+                amount: 80000,
+              },
+            ],
+          },
+          {
+            id: 3,
+            date: "2025-02-21",
+            refNo: "N/A",
+            supplier: "M/S, Mojumder Enterprise",
+            subtotal: 42000,
+            discount: 0,
+            paid: 0,
+            remarks: "",
+            items: [
+              {
+                name: "SINGER-TV-43-SDF",
+                qty: 1,
+                purchaseRate: 42000,
+                mrp: 48500,
+                sellingPrice: 47990,
+                amount: 42000,
+              },
+            ],
+          },
+        ];
 
-            // --- Currency Formatter ---
-            const formatCurrency = (value) => `৳ ${parseFloat(value).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const searchInput = document.getElementById("purchaseSearchInput");
+        const tableBody = document.getElementById("purchaseTableBody");
+        const viewModal = new bootstrap.Modal(
+          document.getElementById("viewPurchaseModal")
+        );
+        const paymentModal = new bootstrap.Modal(
+          document.getElementById("paymentModal")
+        );
 
-            // --- Format initial values in the table ---
-            tableBody.querySelectorAll('tr').forEach(row => {
-                const total = row.querySelector('.total-amount');
-                const paid = row.querySelector('.paid-amount');
-                const due = row.querySelector('.due-amount');
-                const dueAmountValue = parseFloat(due.textContent);
+        // --- UTILITY ---
+        const formatCurrency = (value) =>
+          `৳ ${parseFloat(value).toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}`;
+        const formatDate = (dateString) => {
+          const date = new Date(dateString);
+          const day = String(date.getDate()).padStart(2, "0");
+          const month = date.toLocaleString("default", { month: "short" });
+          const year = date.getFullYear();
+          return `${day}-${month}-${year}`;
+        };
 
-                total.textContent = formatCurrency(total.textContent);
-                paid.textContent = formatCurrency(paid.textContent);
-                due.textContent = formatCurrency(due.textContent);
+        // --- RENDER FUNCTION ---
+        const renderTable = () => {
+          tableBody.innerHTML = ""; // Clear table
+          const filter = searchInput.value.toUpperCase();
 
-                if (dueAmountValue > 0) {
-                    due.classList.add('due-amount');
-                }
+          purchasesData.forEach((p) => {
+            const totalAmount = p.subtotal - p.discount;
+            const due = totalAmount - p.paid;
+
+            let statusBadge;
+            if (due <= 0) {
+              statusBadge = '<span class="badge bg-success">Received</span>';
+            } else if (p.paid > 0) {
+              statusBadge =
+                '<span class="badge bg-warning text-dark">Partial</span>';
+            } else {
+              statusBadge = '<span class="badge bg-danger">Pending</span>';
+            }
+
+            const rowHTML = `
+              <tr data-id="${p.id}">
+                <td>${formatDate(p.date)}</td>
+                <td class="ref-no">${p.refNo}</td>
+                <td class="supplier">${p.supplier}</td>
+                <td class="text-end">${formatCurrency(p.subtotal)}</td>
+                <td class="text-end">${formatCurrency(p.discount)}</td>
+                <td class="text-end total-amount">${formatCurrency(
+                  totalAmount
+                )}</td>
+                <td class="text-end paid-amount">${formatCurrency(p.paid)}</td>
+                <td class="text-end ${
+                  due > 0 ? "due-amount" : ""
+                }">${formatCurrency(due)}</td>
+                <td class="text-center status-cell">${statusBadge}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-secondary view-btn" title="View Details"><i class="fa fa-eye"></i></button>
+                  ${
+                    due > 0
+                      ? `<button class="btn btn-sm btn-outline-success payment-btn" title="Add Payment"><i class="fa fa-hand-holding-dollar"></i></button>`
+                      : ""
+                  }
+                  <button class="btn btn-sm btn-outline-primary edit-btn" title="Edit"><i class="fa fa-edit"></i></button>
+                  <button class="btn btn-sm btn-outline-danger delete-btn" title="Delete"><i class="fa fa-trash"></i></button>
+                </td>
+              </tr>`;
+
+            if (rowHTML.toUpperCase().indexOf(filter) > -1) {
+              tableBody.innerHTML += rowHTML;
+            }
+          });
+        };
+
+        // --- EVENT LISTENERS ---
+        searchInput.addEventListener("keyup", renderTable);
+
+        tableBody.addEventListener("click", function (e) {
+          const button = e.target.closest("button");
+          if (!button) return;
+
+          const row = button.closest("tr");
+          const purchaseId = parseInt(row.dataset.id);
+          const purchase = purchasesData.find((p) => p.id === purchaseId);
+
+          if (button.classList.contains("view-btn")) {
+            const totalAmount = purchase.subtotal - purchase.discount;
+            const due = totalAmount - purchase.paid;
+
+            document.getElementById(
+              "viewModalTitle"
+            ).textContent = `Purchase Details: ${purchase.refNo}`;
+            document.getElementById("modalSupplier").textContent =
+              purchase.supplier;
+            document.getElementById("modalDate").textContent = formatDate(
+              purchase.date
+            );
+            document.getElementById("modalRef").textContent = purchase.refNo;
+            document.getElementById("modalRemarks").textContent =
+              purchase.remarks || "N/A";
+
+            // Populate items table in modal
+            const itemsTbody = document.getElementById("modalItemsTbody");
+            itemsTbody.innerHTML = "";
+            purchase.items.forEach((item) => {
+              itemsTbody.innerHTML += `
+                      <tr>
+                          <td>${item.name}</td>
+                          <td class="text-center">${item.qty}</td>
+                          <td class="text-end">${formatCurrency(
+                            item.purchaseRate
+                          )}</td>
+                          <td class="text-end">${formatCurrency(item.mrp)}</td>
+                          <td class="text-end">${formatCurrency(
+                            item.sellingPrice
+                          )}</td>
+                          <td class="text-end">${formatCurrency(
+                            item.amount
+                          )}</td>
+                      </tr>`;
             });
 
+            // Populate summary in modal
+            document.getElementById("modalSubtotal").textContent =
+              formatCurrency(purchase.subtotal);
+            document.getElementById("modalDiscount").textContent =
+              formatCurrency(purchase.discount);
+            document.getElementById("modalTotal").textContent =
+              formatCurrency(totalAmount);
+            document.getElementById("modalPaid").textContent = formatCurrency(
+              purchase.paid
+            );
+            document.getElementById("modalDue").textContent =
+              formatCurrency(due);
 
-            // --- Search Filter Logic ---
-            searchInput.addEventListener('keyup', function () {
-                const filter = this.value.toUpperCase();
-                const rows = tableBody.getElementsByTagName('tr');
-                for (let row of rows) {
-                    row.style.display = row.textContent.toUpperCase().indexOf(filter) > -1 ? "" : "none";
-                }
-            });
+            viewModal.show();
+          }
 
-            // --- Event Delegation for all buttons ---
-            tableBody.addEventListener('click', function (e) {
-                const button = e.target.closest('button');
-                if (!button) return;
+          if (button.classList.contains("edit-btn")) {
+            alert(`Redirecting to edit page for purchase: ${purchase.refNo}`);
+            window.location.href = `purchases-create.html?id=${purchase.id}`;
+          }
 
-                activeRow = button.closest('tr');
+          if (button.classList.contains("delete-btn")) {
+            if (
+              confirm(
+                `Are you sure you want to delete purchase #${purchase.refNo}?`
+              )
+            ) {
+              purchasesData = purchasesData.filter((p) => p.id !== purchaseId);
+              renderTable();
+            }
+          }
 
-                // View Button
-                if (button.classList.contains('view-btn')) {
-                    const cells = activeRow.cells;
-                    document.getElementById('viewModalTitle').textContent = `Purchase Details: ${activeRow.querySelector('.ref-no').textContent}`;
-                    document.getElementById('modalDate').textContent = cells[0].textContent;
-                    document.getElementById('modalRef').textContent = cells[1].textContent;
-                    document.getElementById('modalSupplier').textContent = cells[2].textContent;
-                    document.getElementById('modalTotal').textContent = activeRow.querySelector('.total-amount').textContent;
-                    document.getElementById('modalPaid').textContent = activeRow.querySelector('.paid-amount').textContent;
-                    document.getElementById('modalDue').textContent = activeRow.querySelector('.due-amount').textContent;
-                    viewModal.show();
-                }
-
-                // Edit Button
-                if (button.classList.contains('edit-btn')) {
-                    const refNumber = activeRow.querySelector('.ref-no').textContent;
-                    alert(`Redirecting to edit page for purchase: ${refNumber}`);
-                    window.location.href = `purchases-create.html?id=${refNumber}`;
-                }
-
-                // Delete Button
-                if (button.classList.contains('delete-btn')) {
-                    if (confirm('Are you sure you want to delete this purchase record?')) {
-                        activeRow.remove();
-                    }
-                }
-
-                // Payment Button
-                if (button.classList.contains('payment-btn')) {
-                    document.getElementById('paymentAmount').value = '';
-                    paymentModal.show();
-                }
-            });
-
-            // --- Save Payment Logic ---
-            document.getElementById('savePaymentBtn').addEventListener('click', function () {
-                const paymentAmountInput = document.getElementById('paymentAmount');
-                const paymentValue = parseFloat(paymentAmountInput.value) || 0;
-
-                if (paymentValue <= 0) {
-                    alert('Please enter a valid payment amount.');
-                    return;
-                }
-
-                const totalCell = activeRow.querySelector('.total-amount');
-                const paidCell = activeRow.querySelector('.paid-amount');
-                const dueCell = activeRow.querySelector('.due-amount');
-                const statusCell = activeRow.querySelector('.status-cell');
-
-                // Note: We need to parse the currency string to get a number
-                const currentPaid = parseFloat(paidCell.textContent.replace(/[৳,]/g, ''));
-                const totalAmount = parseFloat(totalCell.textContent.replace(/[৳,]/g, ''));
-
-                const newPaid = currentPaid + paymentValue;
-                const newDue = totalAmount - newPaid;
-
-                paidCell.textContent = formatCurrency(newPaid);
-                dueCell.textContent = formatCurrency(newDue);
-
-                // Update status badge
-                if (newDue <= 0) {
-                    statusCell.innerHTML = '<span class="badge bg-success">Received</span>';
-                    dueCell.classList.remove('due-amount');
-                    activeRow.querySelector('.payment-btn')?.remove(); // Remove payment button if fully paid
-                } else if (newDue < totalAmount) {
-                    statusCell.innerHTML = '<span class="badge bg-warning text-dark">Partial</span>';
-                    dueCell.classList.add('due-amount');
-                }
-
-                paymentModal.hide();
-            });
+          if (button.classList.contains("payment-btn")) {
+            document.getElementById("paymentAmount").value = "";
+            document.getElementById("paymentPurchaseId").value = purchaseId;
+            paymentModal.show();
+          }
         });
-    </script>
-</body>
 
+        document
+          .getElementById("savePaymentBtn")
+          .addEventListener("click", function () {
+            const paymentAmountInput = document.getElementById("paymentAmount");
+            const purchaseId = parseInt(
+              document.getElementById("paymentPurchaseId").value
+            );
+            const paymentValue = parseFloat(paymentAmountInput.value) || 0;
+
+            if (paymentValue <= 0) {
+              alert("Please enter a valid payment amount.");
+              return;
+            }
+
+            const purchase = purchasesData.find((p) => p.id === purchaseId);
+            const totalAmount = purchase.subtotal - purchase.discount;
+            const maxPayable = totalAmount - purchase.paid;
+
+            if (paymentValue > maxPayable) {
+              alert(
+                `Payment cannot exceed the due amount of ${formatCurrency(
+                  maxPayable
+                )}.`
+              );
+              return;
+            }
+
+            purchase.paid += paymentValue;
+            paymentModal.hide();
+            renderTable();
+          });
+
+        // Initial table render on page load
+        renderTable();
+      });
+    </script>
+  </body>
 </html>

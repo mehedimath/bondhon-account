@@ -1,352 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accounting Dashboard - Bondhon Enterprise</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-        :root {
-            --bs-primary-rgb: 71, 121, 222;
-            --bs-success-rgb: 25, 185, 154;
-            --bs-warning-rgb: 255, 184, 34;
-            --bs-danger-rgb: 239, 72, 88;
-            --bs-info-rgb: 23, 162, 184;
-            --bs-dark-rgb: 33, 37, 41;
-            --bs-body-bg-rgb: 237, 242, 247;
-            --bs-body-color-rgb: 52, 71, 103;
-            --bs-font-sans-serif: 'Poppins', sans-serif;
-        }
+      :root {
+        --bs-primary-rgb: 71, 121, 222;
+        --bs-success-rgb: 25, 185, 154;
+        --bs-warning-rgb: 255, 184, 34;
+        --bs-danger-rgb: 239, 72, 88;
+        --bs-info-rgb: 23, 162, 184;
+        --bs-dark-rgb: 33, 37, 41;
+        --bs-body-bg-rgb: 237, 242, 247;
+        --bs-body-color-rgb: 52, 71, 103;
+        --bs-font-sans-serif: "Poppins", sans-serif;
+      }
 
-        body {
-            background-color: rgb(var(--bs-body-bg-rgb));
-            font-family: var(--bs-font-sans-serif);
-        }
+      body {
+        background-color: rgb(var(--bs-body-bg-rgb));
+        font-family: var(--bs-font-sans-serif);
+      }
 
-        .main-content {
-            margin-left: 250px;
-            padding: 90px 30px 30px 30px;
-        }
+      .main-content {
+        margin-left: 250px;
+        padding: 90px 30px 30px 30px;
+      }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            padding: 70px 0 0;
-            background-color: #fff;
-            height: 100vh;
-            overflow-y: auto;
-            border-right: 1px solid #dee2e6;
-            z-index: 1000;
-        }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        padding: 70px 0 0;
+        background-color: #fff;
+        height: 100vh;
+        overflow-y: auto;
+        border-right: 1px solid #dee2e6;
+        z-index: 1000;
+      }
 
-        .sidebar .nav-link {
-            color: #344767;
-            padding: 12px 20px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
+      .sidebar .nav-link {
+        color: #344767;
+        padding: 12px 20px;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
 
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #0d6efd;
-            background-color: #e9ecef;
-            border-radius: 0.375rem;
-            margin: 0 1rem;
-            padding: 12px;
-        }
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        color: #0d6efd;
+        background-color: #e9ecef;
+        border-radius: 0.375rem;
+        margin: 0 1rem;
+        padding: 12px;
+      }
 
-        .sidebar .nav-link.active {
-            color: white;
-            background-color: rgb(var(--bs-primary-rgb));
-        }
+      .sidebar .nav-link.active {
+        color: white;
+        background-color: rgb(var(--bs-primary-rgb));
+      }
 
-        .sidebar .nav-link .fa-fw {
-            width: 20px;
-            text-align: center;
-            margin-right: 12px;
-            font-size: 1rem;
-        }
+      .sidebar .nav-link .fa-fw {
+        width: 20px;
+        text-align: center;
+        margin-right: 12px;
+        font-size: 1rem;
+      }
 
-        .nav-sub-link {
-            padding-left: 52px !important;
-            font-size: 0.85em !important;
-            font-weight: 400 !important;
-            background-color: transparent !important;
-        }
+      .nav-sub-link {
+        padding-left: 52px !important;
+        font-size: 0.85em !important;
+        font-weight: 400 !important;
+        background-color: transparent !important;
+      }
 
-        .nav-sub-link:hover,
-        .nav-sub-link.active {
-            color: rgb(var(--bs-primary-rgb)) !important;
-        }
+      .nav-sub-link:hover,
+      .nav-sub-link.active {
+        color: rgb(var(--bs-primary-rgb)) !important;
+      }
 
-        .nav-sub-link.active {
-            font-weight: 600 !important;
-        }
+      .nav-sub-link.active {
+        font-weight: 600 !important;
+      }
 
-        h1,
-        .h1,
-        h2,
-        .h2,
-        h3,
-        .h3 {
-            font-weight: 600;
-            color: #344767;
-        }
+      h1,
+      .h1,
+      h2,
+      .h2,
+      h3,
+      .h3 {
+        font-weight: 600;
+        color: #344767;
+      }
 
-        .card {
-            border: none;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1);
-        }
+      .card {
+        border: none;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      }
 
-        .card-header {
-            background-color: #fff;
-            border-bottom: 1px solid #dee2e6;
-            font-weight: 600;
-        }
+      .card-header {
+        background-color: #fff;
+        border-bottom: 1px solid #dee2e6;
+        font-weight: 600;
+      }
 
-        .stat-card-title {
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
+      .stat-card-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
 
-        .stat-card-value {
-            font-size: 1.75rem;
-            font-weight: 700;
-        }
+      .stat-card-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid"><a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
-            <div class="ms-auto d-flex align-items-center">
-                <div class="text-white me-3"><i class="fa fa-user-circle"></i> Admin</div><a href="index.html"
-                    class="btn btn-outline-light btn-sm"><i class="fa fa-sign-out-alt me-1"></i>Logout</a>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+        <div class="ms-auto d-flex align-items-center">
+          <div class="text-white me-3">
+            <i class="fa fa-user-circle"></i> Admin
+          </div>
+          <a href="index.html" class="btn btn-outline-light btn-sm"
+            ><i class="fa fa-sign-out-alt me-1"></i>Logout</a
+          >
         </div>
+      </div>
     </nav>
-
 
     <!-- Sidebar -->
 
     <div class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
-            <a class="nav-link" href="all-create.html"><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a>
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="contactsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
-                    <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="inventoryCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
-                    <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
-                    <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="purchasesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchase Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
-                    <a class="nav-link nav-sub-link" href="purchase_list.html">Purchase List</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="salesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
-                    <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
-                    <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="financeCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
-                </nav>
-            </div>
-            <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
-                aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse">
-                <nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI
-                        Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a
-                        class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="reportsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
-                    <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
-                    <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
-                </nav>
-            </div>
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="dashboard.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a
+        >
+        <a class="nav-link" href="all-create.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a
+        >
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#contactsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-users fa-fw"></i> Contacts
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="contactsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="customers-list.html"
+              >Customers</a
+            >
+            <a class="nav-link nav-sub-link" href="suppliers-manage.html"
+              >Suppliers</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#inventoryCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-box-open fa-fw"></i> Inventory
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="inventoryCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="inventory-products.html"
+              >Product List</a
+            >
+            <a class="nav-link nav-sub-link" href="items-manage.html"
+              >Item Categories</a
+            >
+            <a class="nav-link nav-sub-link" href="brands-manage.html"
+              >Brands</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#purchasesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-shopping-cart fa-fw"></i> Purchases
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="purchasesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="purchases-create.html"
+              >New Purchase</a
+            >
+            <a class="nav-link nav-sub-link" href="purchase_list.html"
+              >Purchase List</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#salesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="salesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="sales-create.html"
+              >New Invoice</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-manage-invoices.html"
+              >Invoice List</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-return-create.html"
+              >Process Return</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#financeCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-wallet fa-fw"></i> Finance
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="financeCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="expenses-manage.html"
+              >Manage Expenses</a
+            >
+          </nav>
+        </div>
+        <!-- New Collection Links -->
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#collectionsCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="collectionsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="emi-collection.html"
+              >EMI Collection</a
+            ><a class="nav-link nav-sub-link" href="due-collection.html"
+              >Due Collection</a
+            ><a class="nav-link nav-sub-link" href="customer-ledger.html"
+              >Customer Ledger</a
+            >
+          </nav>
+        </div>
 
-            <a class="nav-link" data-bs-toggle="collapse" href="#accountingCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Accounts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="accountingCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="voucher_form.html">Voucher Posting</a>
-                    <a class="nav-link nav-sub-link" href="voucher-list.html">Voucher List</a><a
-                        class="nav-link nav-sub-link" href="trial-balance.html">Trial Balance</a>
-                </nav>
-            </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#accountingCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Accounting
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="accountingCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="account-dashboard.html"
+              >Accounts Dashboard</a
+            ><a class="nav-link nav-sub-link" href="voucher_form.html"
+              >Voucher Entry</a
+            ><a class="nav-link nav-sub-link" href="voucher-list.html"
+              >Voucher List</a
+            ><a class="nav-link nav-sub-link" href="trial-balance.html"
+              >Trial Balance</a
+            ><a class="nav-link nav-sub-link" href="balance-sheet.html"
+              >Balance Sheet</a
+            >
+          </nav>
+        </div>
 
-
-            <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
-        </nav>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#reportsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-chart-pie fa-fw"></i> Reports
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="reportsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="reports-sales.html"
+              >Sales Report</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-stock-ledger.html"
+              >Stock Ledger</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-customer-dues.html"
+              >Customer Dues</a
+            >
+          </nav>
+        </div>
+        <a class="nav-link" href="settings.html"
+          ><i class="fa fa-cog fa-fw"></i> Settings</a
+        >
+      </nav>
     </div>
 
     <main class="main-content">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h1 class="h3 mb-0">Accounting Dashboard</h1>
-                    <p class="mb-0 text-muted">Your business's financial snapshot.</p>
-                </div>
-                <div class="d-flex gap-2">
-                    <a href="journal-entry.html" class="btn btn-primary"><i class="fa fa-plus-circle me-1"></i> New
-                        Journal Entry</a>
-                    <a href="general-ledger.html" class="btn btn-outline-secondary"><i class="fa fa-book me-1"></i> View
-                        Ledgers</a>
-                </div>
-            </div>
-            <div class="row g-4 mb-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-body text-success">
-                        <div class="stat-card-title">Cash & Bank Balance</div>
-                        <div class="stat-card-value">৳ 5.2M</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-body text-warning">
-                        <div class="stat-card-title">Total Receivables</div>
-                        <div class="stat-card-value">৳ 3.6M</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-body text-danger">
-                        <div class="stat-card-title">Total Payables</div>
-                        <div class="stat-card-value">৳ 1.8M</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-body text-primary">
-                        <div class="stat-card-title">Net Profit (YTD)</div>
-                        <div class="stat-card-value">৳ 8.5M</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-4 mb-4">
-                <div class="col-lg-7">
-                    <div class="card h-100">
-                        <div class="card-header"><i class="fa fa-chart-bar me-2"></i>Monthly Cash Flow</div>
-                        <div class="card-body"><canvas id="cashFlowChart"></canvas></div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="card h-100">
-                        <div class="card-header"><i class="fa fa-chart-pie me-2"></i>Expense Breakdown (This Month)
-                        </div>
-                        <div class="card-body d-flex align-items-center justify-content-center"><canvas
-                                id="expenseChart" style="max-height: 300px;"></canvas></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header"><i class="fa fa-history me-2"></i>Recent Financial Transactions</div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Account</th>
-                                    <th>Description</th>
-                                    <th class="text-end">Debit</th>
-                                    <th class="text-end">Credit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>07-Mar-25</td>
-                                    <td>Profit Distribution</td>
-                                    <td>Paid to Director, MD. Iqbal</td>
-                                    <td class="text-end text-danger">৳ 20,000</td>
-                                    <td class="text-end"></td>
-                                </tr>
-                                <tr>
-                                    <td>07-Mar-25</td>
-                                    <td>Cash</td>
-                                    <td>Received from Salma Akter (Inv #1561)</td>
-                                    <td class="text-end text-success">৳ 4,000</td>
-                                    <td class="text-end"></td>
-                                </tr>
-                                <tr>
-                                    <td>06-Mar-25</td>
-                                    <td>Rent Expense</td>
-                                    <td>Monthly Rent Payment</td>
-                                    <td class="text-end text-danger">৳ 19,000</td>
-                                    <td class="text-end"></td>
-                                </tr>
-                                <tr>
-                                    <td>04-Mar-25</td>
-                                    <td>Bank Account</td>
-                                    <td>Cash Deposit</td>
-                                    <td class="text-end text-success">৳ 200,000</td>
-                                    <td class="text-end"></td>
-                                </tr>
-                                <tr>
-                                    <td>03-Mar-25</td>
-                                    <td>Accounts Receivable</td>
-                                    <td>Sale to Rana (Inv #6084)</td>
-                                    <td class="text-end text-success">৳ 12,500</td>
-                                    <td class="text-end"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h1 class="h3 mb-0">Accounting Dashboard</h1>
+            <p class="mb-0 text-muted">Your business's financial snapshot.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <a href="journal-entry.html" class="btn btn-primary"
+              ><i class="fa fa-plus-circle me-1"></i> New Journal Entry</a
+            >
+            <a href="general-ledger.html" class="btn btn-outline-secondary"
+              ><i class="fa fa-book me-1"></i> View Ledgers</a
+            >
+          </div>
         </div>
+        <div class="row g-4 mb-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-body text-success">
+              <div class="stat-card-title">Cash & Bank Balance</div>
+              <div class="stat-card-value">৳ 5.2M</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-body text-warning">
+              <div class="stat-card-title">Total Receivables</div>
+              <div class="stat-card-value">৳ 3.6M</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-body text-danger">
+              <div class="stat-card-title">Total Payables</div>
+              <div class="stat-card-value">৳ 1.8M</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card card-body text-primary">
+              <div class="stat-card-title">Net Profit (YTD)</div>
+              <div class="stat-card-value">৳ 8.5M</div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 mb-4">
+          <div class="col-lg-7">
+            <div class="card h-100">
+              <div class="card-header">
+                <i class="fa fa-chart-bar me-2"></i>Monthly Cash Flow
+              </div>
+              <div class="card-body"><canvas id="cashFlowChart"></canvas></div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card h-100">
+              <div class="card-header">
+                <i class="fa fa-chart-pie me-2"></i>Expense Breakdown (This
+                Month)
+              </div>
+              <div
+                class="card-body d-flex align-items-center justify-content-center"
+              >
+                <canvas id="expenseChart" style="max-height: 300px"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-history me-2"></i>Recent Financial Transactions
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Account</th>
+                    <th>Description</th>
+                    <th class="text-end">Debit</th>
+                    <th class="text-end">Credit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>07-Mar-25</td>
+                    <td>Profit Distribution</td>
+                    <td>Paid to Director, MD. Iqbal</td>
+                    <td class="text-end text-danger">৳ 20,000</td>
+                    <td class="text-end"></td>
+                  </tr>
+                  <tr>
+                    <td>07-Mar-25</td>
+                    <td>Cash</td>
+                    <td>Received from Salma Akter (Inv #1561)</td>
+                    <td class="text-end text-success">৳ 4,000</td>
+                    <td class="text-end"></td>
+                  </tr>
+                  <tr>
+                    <td>06-Mar-25</td>
+                    <td>Rent Expense</td>
+                    <td>Monthly Rent Payment</td>
+                    <td class="text-end text-danger">৳ 19,000</td>
+                    <td class="text-end"></td>
+                  </tr>
+                  <tr>
+                    <td>04-Mar-25</td>
+                    <td>Bank Account</td>
+                    <td>Cash Deposit</td>
+                    <td class="text-end text-success">৳ 200,000</td>
+                    <td class="text-end"></td>
+                  </tr>
+                  <tr>
+                    <td>03-Mar-25</td>
+                    <td>Accounts Receivable</td>
+                    <td>Sale to Rana (Inv #6084)</td>
+                    <td class="text-end text-success">৳ 12,500</td>
+                    <td class="text-end"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>const cashFlowCtx = document.getElementById("cashFlowChart").getContext("2d"); new Chart(cashFlowCtx, { type: "bar", data: { labels: ["Nov", "Dec", "Jan", "Feb", "Mar"], datasets: [{ label: "Cash In", data: [7e6, 9e6, 85e5, 12e6, 1e7], backgroundColor: "rgba(25, 185, 154, 0.7)" }, { label: "Cash Out", data: [6e6, 75e5, 7e6, 9e6, 8e6], backgroundColor: "rgba(239, 72, 88, 0.7)" }] }, options: { responsive: !0, maintainAspectRatio: !1, scales: { y: { beginAtZero: !0, ticks: { callback: t => "\u09f3" + t / 1e6 + "M" } } } } }); const expenseCtx = document.getElementById("expenseChart").getContext("2d"); new Chart(expenseCtx, { type: "doughnut", data: { labels: ["Rent", "Salaries", "Utilities", "Marketing", "Maintenance"], datasets: [{ data: [19e3, 15e4, 25e3, 3e4, 15e3], backgroundColor: ["#ef4858", "#4779de", "#ffb822", "#19b99a", "#6c757d"] }] }, options: { responsive: !0, maintainAspectRatio: !1 } });</script>
-</body>
-
+    <script>
+      const cashFlowCtx = document
+        .getElementById("cashFlowChart")
+        .getContext("2d");
+      new Chart(cashFlowCtx, {
+        type: "bar",
+        data: {
+          labels: ["Nov", "Dec", "Jan", "Feb", "Mar"],
+          datasets: [
+            {
+              label: "Cash In",
+              data: [7e6, 9e6, 85e5, 12e6, 1e7],
+              backgroundColor: "rgba(25, 185, 154, 0.7)",
+            },
+            {
+              label: "Cash Out",
+              data: [6e6, 75e5, 7e6, 9e6, 8e6],
+              backgroundColor: "rgba(239, 72, 88, 0.7)",
+            },
+          ],
+        },
+        options: {
+          responsive: !0,
+          maintainAspectRatio: !1,
+          scales: {
+            y: {
+              beginAtZero: !0,
+              ticks: { callback: (t) => "\u09f3" + t / 1e6 + "M" },
+            },
+          },
+        },
+      });
+      const expenseCtx = document
+        .getElementById("expenseChart")
+        .getContext("2d");
+      new Chart(expenseCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Rent", "Salaries", "Utilities", "Marketing", "Maintenance"],
+          datasets: [
+            {
+              data: [19e3, 15e4, 25e3, 3e4, 15e3],
+              backgroundColor: [
+                "#ef4858",
+                "#4779de",
+                "#ffb822",
+                "#19b99a",
+                "#6c757d",
+              ],
+            },
+          ],
+        },
+        options: { responsive: !0, maintainAspectRatio: !1 },
+      });
+    </script>
+  </body>
 </html>

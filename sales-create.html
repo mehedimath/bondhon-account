@@ -1,483 +1,753 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Invoice - Bondhon Enterprise</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa
-        }
+      body {
+        background-color: #f8f9fa;
+      }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            padding: 70px 0 0;
-            background-color: #f8f9fa;
-            color: #212529;
-            height: 100vh;
-            overflow-y: auto;
-        }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 250px;
+        padding: 70px 0 0;
+        background-color: #f8f9fa;
+        color: #212529;
+        height: 100vh;
+        overflow-y: auto;
+      }
 
-        .sidebar .nav-link {
-            color: #212529;
-            padding: 10px 20px
-        }
+      .sidebar .nav-link {
+        color: #212529;
+        padding: 10px 20px;
+      }
 
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #212529;
-            background-color: #e4e5e6
-        }
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        color: #212529;
+        background-color: #e4e5e6;
+      }
 
-        .sidebar .nav-link .fa {
-            width: 20px;
-            text-align: center;
-            margin-right: 10px
-        }
+      .sidebar .nav-link .fa {
+        width: 20px;
+        text-align: center;
+        margin-right: 10px;
+      }
 
-        .nav-sub-link {
-            margin-left: 50px;
-        }
+      .nav-sub-link {
+        margin-left: 50px;
+      }
 
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            padding-top: 70px
-        }
+      .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        padding-top: 70px;
+      }
 
-        .navbar {
-            z-index: 1030
-        }
+      .navbar {
+        z-index: 1030;
+      }
 
-        .navbar-brand {
-            font-weight: 700
-        }
+      .navbar-brand {
+        font-weight: 700;
+      }
 
-        .invoice-total-box {
-            background-color: #e9ecef;
-            border-radius: .375rem;
-            padding: 1.5rem
-        }
+      .invoice-total-box {
+        background-color: #e9ecef;
+        border-radius: 0.375rem;
+        padding: 1.5rem;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
-            <div class="ms-auto d-flex align-items-center">
-                <div class="user-info me-3">
-                    <i class="fa fa-user-circle"></i> Admin
-                </div>
-                <a href="index.html" class="btn btn-outline-light btn-sm">
-                    <i class="fa fa-sign-out-alt me-1"></i>Logout
-                </a>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="dashboard.html">Bondhon Enterprise</a>
+        <div class="ms-auto d-flex align-items-center">
+          <div class="user-info me-3">
+            <i class="fa fa-user-circle"></i> Admin
+          </div>
+          <a href="index.html" class="btn btn-outline-light btn-sm">
+            <i class="fa fa-sign-out-alt me-1"></i>Logout
+          </a>
         </div>
+      </div>
     </nav>
-
-
 
     <!-- Sidebar -->
 
     <div class="sidebar">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="dashboard.html"><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a>
-            <a class="nav-link" href="all-create.html"><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a>
-            <a class="nav-link" data-bs-toggle="collapse" href="#contactsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-users fa-fw"></i> Contacts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="contactsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="customers-list.html">Customers</a>
-                    <a class="nav-link nav-sub-link" href="suppliers-manage.html">Suppliers</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#inventoryCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-box-open fa-fw"></i> Inventory <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="inventoryCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="inventory-dashboard.html">Inventory Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="inventory-products.html">Product List</a>
-                    <a class="nav-link nav-sub-link" href="items-manage.html">Item Categories</a>
-                    <a class="nav-link nav-sub-link" href="brands-manage.html">Brands</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#purchasesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-shopping-cart fa-fw"></i> Purchases <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="purchasesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="purchase-dashboard.html">Purchase Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="purchases-create.html">New Purchase</a>
-                    <a class="nav-link nav-sub-link" href="purchase_list.html">Purchase List</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#salesCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="salesCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="sales-dashboard.html">Sales Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="sales-create.html">New Invoice</a>
-                    <a class="nav-link nav-sub-link" href="sales-manage-invoices.html">Invoice List</a>
-                    <a class="nav-link nav-sub-link" href="sales-return-create.html">Process Return</a>
-                </nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#financeCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-wallet fa-fw"></i> Finance <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="financeCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="expenses-manage.html">Manage Expenses</a>
-                </nav>
-            </div>
-            <!-- New Collection Links -->
-            <a class="nav-link" data-bs-toggle="collapse" href="#collectionsCollapse" role="button"
-                aria-expanded="true"><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections <i
-                    class="fa fa-chevron-down fa-xs float-end mt-1"></i></a>
-            <div class="collapse show" id="collectionsCollapse">
-                <nav class="nav flex-column"><a class="nav-link nav-sub-link" href="emi-collection.html">EMI
-                        Collection</a><a class="nav-link nav-sub-link" href="due-collection.html">Due Collection</a><a
-                        class="nav-link nav-sub-link" href="customer-ledger.html">Customer Ledger</a></nav>
-            </div>
-            <a class="nav-link" data-bs-toggle="collapse" href="#reportsCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Reports <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="reportsCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="stock-dashboard.html">Stock Dashboard</a>
-                    <a class="nav-link nav-sub-link" href="reports-sales.html">Sales Report</a>
-                    <a class="nav-link nav-sub-link" href="reports-stock-ledger.html">Stock Ledger</a>
-                    <a class="nav-link nav-sub-link" href="reports-customer-dues.html">Customer Dues</a>
-                </nav>
-            </div>
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="dashboard.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Dashboard</a
+        >
+        <a class="nav-link" href="all-create.html"
+          ><i class="fa fa-tachometer-alt fa-fw"></i> Quick Add</a
+        >
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#contactsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-users fa-fw"></i> Contacts
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="contactsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="customers-list.html"
+              >Customers</a
+            >
+            <a class="nav-link nav-sub-link" href="suppliers-manage.html"
+              >Suppliers</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#inventoryCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-box-open fa-fw"></i> Inventory
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="inventoryCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="inventory-products.html"
+              >Product List</a
+            >
+            <a class="nav-link nav-sub-link" href="items-manage.html"
+              >Item Categories</a
+            >
+            <a class="nav-link nav-sub-link" href="brands-manage.html"
+              >Brands</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#purchasesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-shopping-cart fa-fw"></i> Purchases
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="purchasesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="purchases-create.html"
+              >New Purchase</a
+            >
+            <a class="nav-link nav-sub-link" href="purchase_list.html"
+              >Purchase List</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#salesCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-file-invoice-dollar fa-fw"></i> Sales
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="salesCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="sales-create.html"
+              >New Invoice</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-manage-invoices.html"
+              >Invoice List</a
+            >
+            <a class="nav-link nav-sub-link" href="sales-return-create.html"
+              >Process Return</a
+            >
+          </nav>
+        </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#financeCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-wallet fa-fw"></i> Finance
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="financeCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="expenses-manage.html"
+              >Manage Expenses</a
+            >
+          </nav>
+        </div>
+        <!-- New Collection Links -->
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#collectionsCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Collections
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="collectionsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="emi-collection.html"
+              >EMI Collection</a
+            ><a class="nav-link nav-sub-link" href="due-collection.html"
+              >Due Collection</a
+            ><a class="nav-link nav-sub-link" href="customer-ledger.html"
+              >Customer Ledger</a
+            >
+          </nav>
+        </div>
 
-            <a class="nav-link" data-bs-toggle="collapse" href="#accountingCollapse" role="button" aria-expanded="true">
-                <i class="fa fa-chart-pie fa-fw"></i> Accounts <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
-            </a>
-            <div class="collapse show" id="accountingCollapse">
-                <nav class="nav flex-column">
-                    <a class="nav-link nav-sub-link" href="voucher_form.html">Voucher Posting</a>
-                    <a class="nav-link nav-sub-link" href="voucher-list.html">Voucher List</a><a
-                        class="nav-link nav-sub-link" href="trial-balance.html">Trial Balance</a>
-                </nav>
-            </div>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#accountingCollapse"
+          role="button"
+          aria-expanded="true"
+          ><i class="fa fa-hand-holding-dollar fa-fw"></i> Accounting
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i
+        ></a>
+        <div class="collapse show" id="accountingCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="account-dashboard.html"
+              >Accounts Dashboard</a
+            ><a class="nav-link nav-sub-link" href="voucher_form.html"
+              >Voucher Entry</a
+            ><a class="nav-link nav-sub-link" href="voucher-list.html"
+              >Voucher List</a
+            ><a class="nav-link nav-sub-link" href="trial-balance.html"
+              >Trial Balance</a
+            ><a class="nav-link nav-sub-link" href="balance-sheet.html"
+              >Balance Sheet</a
+            >
+          </nav>
+        </div>
 
-
-            <a class="nav-link" href="settings.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
-        </nav>
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#reportsCollapse"
+          role="button"
+          aria-expanded="true"
+        >
+          <i class="fa fa-chart-pie fa-fw"></i> Reports
+          <i class="fa fa-chevron-down fa-xs float-end mt-1"></i>
+        </a>
+        <div class="collapse show" id="reportsCollapse">
+          <nav class="nav flex-column">
+            <a class="nav-link nav-sub-link" href="reports-sales.html"
+              >Sales Report</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-stock-ledger.html"
+              >Stock Ledger</a
+            >
+            <a class="nav-link nav-sub-link" href="reports-customer-dues.html"
+              >Customer Dues</a
+            >
+          </nav>
+        </div>
+        <a class="nav-link" href="settings.html"
+          ><i class="fa fa-cog fa-fw"></i> Settings</a
+        >
+      </nav>
     </div>
 
-
     <main class="main-content">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Create New Sale / Invoice</h1>
-                <a href="sales-manage-invoices.html" class="btn btn-sm btn-outline-secondary"><i
-                        class="fa fa-list me-1"></i> View All Invoices</a>
-            </div>
-            <div class="card">
-                <div class="card-body p-4">
-                    <div class="row mb-4 animate__animated animate__fadeInUp">
-                        <div class="col-md-6">
-                            <label for="customerName" class="form-label">Customer Info *</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="customerName"
-                                    placeholder="Search or Add Customer" list="customer-list">
-                                <datalist id="customer-list">
-                                    <option value="Md. Mahfooz | 01613-505311">
-                                    <option value="Rana (Sukran Group) | 01405-591026">
-                                    <option value="Salma Akter | 01773-047204">
-                                </datalist>
-                                <button class="btn btn-outline-primary" type="button" title="Add New Customer"
-                                    data-bs-toggle="modal" data-bs-target="#customerModal">
-                                    <i class="fa fa-user-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-3"><label for="invoiceDate" class="form-label">Invoice Date *</label><input
-                                type="date" class="form-control" id="invoiceDate" value="2025-03-03"></div>
-                        <div class="col-md-3"><label for="invoiceNumber" class="form-label">Invoice #</label><input
-                                type="text" class="form-control" id="invoiceNumber" value="6084" readonly></div>
-                    </div>
-                    <div class="table-responsive animate__animated animate__fadeInUp">
-                        <table class="table table-bordered" id="invoice-items-table">
-                            <thead class="table-light">
-                                <tr>
-                                    <th style="width: 30%;">Item / Model #</th>
-                                    <th style="width: 15%;">Ref No</th>
-                                    <th style="width: 10%;">Stock</th>
-                                    <th style="width: 10%;">Qty</th>
-                                    <th style="width: 15%;">Unit Price</th>
-                                    <th style="width: 15%;" class="text-end">Total</th>
-                                    <th style="width: 5%;" class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="invoiceItemsTbody"></tbody>
-                        </table>
-                    </div>
-                    <button class="btn btn-primary btn-sm animate__animated animate__fadeInUp" id="addItemBtn"><i
-                            class="fa fa-plus me-1"></i> Add Item
-                        Row</button>
-
-                    <div class="row mt-4 animate__animated animate__fadeInUp">
-                        <div class="col-lg-7 d-none animate__animated animate__fadeInUp" id="emiScheduleContainer">
-                            <h5 class="mb-3">EMI Payment Schedule</h5>
-                            <div class="table-responsive" style="max-height: 400px;">
-                                <table class="table table-sm table-bordered table-hover">
-                                    <thead class="table-light sticky-top">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Payment Date</th>
-                                            <th class="text-end">Payment</th>
-                                            <th class="text-end">Principal</th>
-                                            <th class="text-end">Interest</th>
-                                            <th class="text-end">Balance</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="emiScheduleTbody"></tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-5 ms-auto" id="totals-column">
-                            <div class="invoice-total-box">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Subtotal:</span>
-                                    <span id="subtotalSpan">৳ 0.00</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span>Discount:</span>
-                                    <span><input type="text" class="form-control form-control-sm text-end"
-                                            style="width: 100px;" id="discountInput" value="0"
-                                            placeholder="% or fixed"></span>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between fw-bold h4 mb-3">
-                                    <span>GRAND TOTAL:</span>
-                                    <span id="grandTotalSpan">৳ 0.00</span>
-                                </div>
-
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <label for="paidAmount" class="col-form-label fw-bold">PAID AMOUNT:</label>
-                                    <input type="number" class="form-control form-control-lg text-end" id="paidAmount"
-                                        style="width: 150px;" value="0" placeholder="0.00">
-                                </div>
-
-                                <hr>
-
-                                <div class="d-flex justify-content-between text-danger fw-bold h5 mb-3"
-                                    id="closingDueWrapper">
-                                    <span>BALANCE DUE:</span>
-                                    <span id="closingDueSpan">৳ 0.00</span>
-                                </div>
-
-                                <div class="form-check form-switch mb-2">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="enableEmiCheck">
-                                    <label class="form-check-label" for="enableEmiCheck">Setup EMI for Remaining
-                                        Balance</label>
-                                </div>
-
-                                <div id="emiDetails" class="d-none ps-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-2"><label
-                                            for="emiInstallments" class="form-label mb-0">No. of
-                                            Installments:</label><input type="number"
-                                            class="form-control form-control-sm text-end" id="emiInstallments"
-                                            style="width: 120px;" value="12" min="1"></div>
-                                    <div class="d-flex justify-content-between align-items-center mb-2"><label
-                                            for="emiAnnualRate" class="form-label mb-0">Annual Rate (%):</label><input
-                                            type="number" class="form-control form-control-sm text-end"
-                                            id="emiAnnualRate" style="width: 120px;" value="10" min="0"></div>
-                                    <hr class="my-2">
-                                    <div class="d-flex justify-content-between fw-bold mb-2"><span>Monthly
-                                            Payment:</span><span id="monthlyPaymentSpan">৳ 0.00</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4 animate__animated animate__fadeInUp">
-                        <div class="col-12 text-end">
-                            <button class="btn btn-secondary"><i class="fa fa-save me-1"></i> Save as Draft</button>
-                            <button class="btn btn-success" id="finalizeBtn"><i class="fa fa-check-circle me-1"></i>
-                                Finalize and Generate Invoice</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h1 class="h3">Create New Sale / Invoice</h1>
+          <a
+            href="sales-manage-invoices.html"
+            class="btn btn-sm btn-outline-secondary"
+            ><i class="fa fa-list me-1"></i> View All Invoices</a
+          >
         </div>
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row mb-4 animate__animated animate__fadeInUp">
+              <div class="col-md-6">
+                <label for="customerName" class="form-label"
+                  >Customer Info *</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customerName"
+                    placeholder="Search or Add Customer"
+                    list="customer-list"
+                  />
+                  <datalist id="customer-list">
+                    <option value="Md. Mahfooz | 01613-505311"></option>
+                    <option value="Rana (Sukran Group) | 01405-591026"></option>
+                    <option value="Salma Akter | 01773-047204"></option>
+                  </datalist>
+
+                  <button
+                    class="btn btn-outline-primary"
+                    type="button"
+                    title="Add New Customer"
+                    data-bs-toggle="modal"
+                    data-bs-target="#customerModal"
+                  >
+                    <i class="fa fa-user-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="invoiceDate" class="form-label"
+                  >Invoice Date *</label
+                ><input
+                  type="date"
+                  class="form-control"
+                  id="invoiceDate"
+                  value="2025-03-03"
+                />
+              </div>
+              <div class="col-md-3">
+                <label for="invoiceNumber" class="form-label">Invoice #</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  id="invoiceNumber"
+                  value="6084"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="table-responsive animate__animated animate__fadeInUp">
+              <table class="table table-bordered" id="invoice-items-table">
+                <thead class="table-light">
+                  <tr>
+                    <th style="width: 30%">Item / Model #</th>
+                    <th style="width: 15%">Ref No</th>
+                    <th style="width: 10%">Stock</th>
+                    <th style="width: 10%">Qty</th>
+                    <th style="width: 15%">Unit Price</th>
+                    <th style="width: 15%" class="text-end">Total</th>
+                    <th style="width: 5%" class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="invoiceItemsTbody"></tbody>
+              </table>
+            </div>
+            <button
+              class="btn btn-primary btn-sm animate__animated animate__fadeInUp"
+              id="addItemBtn"
+            >
+              <i class="fa fa-plus me-1"></i> Add Item Row
+            </button>
+
+            <div class="row mt-4 animate__animated animate__fadeInUp">
+              <div
+                class="col-lg-7 d-none animate__animated animate__fadeInUp"
+                id="emiScheduleContainer"
+              >
+                <h5 class="mb-3">EMI Payment Schedule</h5>
+                <div class="table-responsive" style="max-height: 400px">
+                  <table class="table table-sm table-bordered table-hover">
+                    <thead class="table-light sticky-top">
+                      <tr>
+                        <th>#</th>
+                        <th>Payment Date</th>
+                        <th class="text-end">Payment</th>
+                        <th class="text-end">Principal</th>
+                        <th class="text-end">Interest</th>
+                        <th class="text-end">Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody id="emiScheduleTbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-lg-5 ms-auto" id="totals-column">
+                <div class="invoice-total-box">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span>Subtotal:</span>
+                    <span id="subtotalSpan">৳ 0.00</span>
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <span>Discount:</span>
+                    <span
+                      ><input
+                        type="text"
+                        class="form-control form-control-sm text-end"
+                        style="width: 100px"
+                        id="discountInput"
+                        value="0"
+                        placeholder="% or fixed"
+                    /></span>
+                  </div>
+                  <hr />
+                  <div class="d-flex justify-content-between fw-bold h4 mb-3">
+                    <span>GRAND TOTAL:</span>
+                    <span id="grandTotalSpan">৳ 0.00</span>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-3"
+                  >
+                    <label for="paidAmount" class="col-form-label fw-bold"
+                      >PAID AMOUNT:</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control form-control-lg text-end"
+                      id="paidAmount"
+                      style="width: 150px"
+                      value="0"
+                      placeholder="0.00"
+                    />
+                  </div>
+
+                  <hr />
+
+                  <div
+                    class="d-flex justify-content-between text-danger fw-bold h5 mb-3"
+                    id="closingDueWrapper"
+                  >
+                    <span>BALANCE DUE:</span>
+                    <span id="closingDueSpan">৳ 0.00</span>
+                  </div>
+
+                  <div class="form-check form-switch mb-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="enableEmiCheck"
+                    />
+                    <label class="form-check-label" for="enableEmiCheck"
+                      >Setup EMI for Remaining Balance</label
+                    >
+                  </div>
+
+                  <div id="emiDetails" class="d-none ps-3">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-2"
+                    >
+                      <label for="emiInstallments" class="form-label mb-0"
+                        >No. of Installments:</label
+                      ><input
+                        type="number"
+                        class="form-control form-control-sm text-end"
+                        id="emiInstallments"
+                        style="width: 120px"
+                        value="12"
+                        min="1"
+                      />
+                    </div>
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-2"
+                    >
+                      <label for="emiAnnualRate" class="form-label mb-0"
+                        >Annual Rate (%):</label
+                      ><input
+                        type="number"
+                        class="form-control form-control-sm text-end"
+                        id="emiAnnualRate"
+                        style="width: 120px"
+                        value="10"
+                        min="0"
+                      />
+                    </div>
+                    <hr class="my-2" />
+                    <div class="d-flex justify-content-between fw-bold mb-2">
+                      <span>Monthly Payment:</span
+                      ><span id="monthlyPaymentSpan">৳ 0.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4 animate__animated animate__fadeInUp">
+              <div class="col-12 text-end">
+                <button class="btn btn-secondary">
+                  <i class="fa fa-save me-1"></i> Save as Draft
+                </button>
+                <button class="btn btn-success" id="finalizeBtn">
+                  <i class="fa fa-check-circle me-1"></i> Finalize and Generate
+                  Invoice
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <div class="modal fade" id="customerModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="customerModalLabel">Add New Customer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="customerForm">
-                        <div class="mb-3"><label for="newCustomerName" class="form-label">Customer Name*</label><input
-                                type="text" class="form-control" id="newCustomerName" required></div>
-                        <div class="mb-3"><label for="newCustomerContact" class="form-label">Contact #*</label><input
-                                type="tel" class="form-control" id="newCustomerContact" required></div>
-                        <div class="mb-3"><label for="newCustomerAddress" class="form-label">Address</label><textarea
-                                class="form-control" id="newCustomerAddress" rows="3"></textarea></div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button><button type="button" class="btn btn-primary"
-                        id="saveNewCustomerBtn">Save Customer</button></div>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="customerModalLabel">
+              Add New Customer
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="customerForm">
+              <div class="mb-3">
+                <label for="newCustomerName" class="form-label"
+                  >Customer Name*</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  id="newCustomerName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="newCustomerContact" class="form-label"
+                  >Contact #*</label
+                ><input
+                  type="tel"
+                  class="form-control"
+                  id="newCustomerContact"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="newCustomerAddress" class="form-label"
+                  >Address</label
+                ><textarea
+                  class="form-control"
+                  id="newCustomerAddress"
+                  rows="3"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close</button
+            ><button
+              type="button"
+              class="btn btn-primary"
+              id="saveNewCustomerBtn"
+            >
+              Save Customer
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const customerModal = new bootstrap.Modal(document.getElementById('customerModal'));
-            const tbody = document.getElementById("invoiceItemsTbody");
-            const addItemBtn = document.getElementById("addItemBtn");
-            const enableEmiCheck = document.getElementById("enableEmiCheck");
-            const emiDetails = document.getElementById("emiDetails");
-            const emiInstallmentsInput = document.getElementById("emiInstallments");
-            const emiAnnualRateInput = document.getElementById("emiAnnualRate");
-            const monthlyPaymentSpan = document.getElementById("monthlyPaymentSpan");
-            const closingDueWrapper = document.getElementById("closingDueWrapper");
-            const emiScheduleContainer = document.getElementById("emiScheduleContainer");
-            const totalsColumn = document.getElementById("totals-column");
-            const emiScheduleTbody = document.getElementById("emiScheduleTbody");
-            const allCalculationInputs = document.querySelectorAll('#discountInput, #paidAmount, #enableEmiCheck, #emiInstallments, #emiAnnualRate, #invoiceDate');
+      document.addEventListener("DOMContentLoaded", function () {
+        const customerModal = new bootstrap.Modal(
+          document.getElementById("customerModal")
+        );
+        const tbody = document.getElementById("invoiceItemsTbody");
+        const addItemBtn = document.getElementById("addItemBtn");
+        const enableEmiCheck = document.getElementById("enableEmiCheck");
+        const emiDetails = document.getElementById("emiDetails");
+        const emiInstallmentsInput = document.getElementById("emiInstallments");
+        const emiAnnualRateInput = document.getElementById("emiAnnualRate");
+        const monthlyPaymentSpan =
+          document.getElementById("monthlyPaymentSpan");
+        const closingDueWrapper = document.getElementById("closingDueWrapper");
+        const emiScheduleContainer = document.getElementById(
+          "emiScheduleContainer"
+        );
+        const totalsColumn = document.getElementById("totals-column");
+        const emiScheduleTbody = document.getElementById("emiScheduleTbody");
+        const allCalculationInputs = document.querySelectorAll(
+          "#discountInput, #paidAmount, #enableEmiCheck, #emiInstallments, #emiAnnualRate, #invoiceDate"
+        );
 
-            function formatCurrency(num) {
-                return `৳ ${num.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        function formatCurrency(num) {
+          return `৳ ${num.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}`;
+        }
+
+        function updateAllCalculations() {
+          let subtotal = 0;
+          tbody.querySelectorAll("tr").forEach((row) => {
+            const qty = parseFloat(row.querySelector(".item-qty").value) || 0;
+            const price =
+              parseFloat(row.querySelector(".item-price").value) || 0;
+            const total = qty * price;
+            row.querySelector(".item-total").textContent =
+              formatCurrency(total);
+            subtotal += total;
+          });
+          document.getElementById("subtotalSpan").textContent =
+            formatCurrency(subtotal);
+
+          const discountInput = document.getElementById("discountInput").value;
+          let discountAmount = 0;
+          if (discountInput.includes("%")) {
+            const percentage =
+              parseFloat(discountInput.replace(/[^0-9.]/g, "")) || 0;
+            discountAmount = (percentage / 100) * subtotal;
+          } else {
+            discountAmount = parseFloat(discountInput) || 0;
+          }
+
+          const grandTotal = subtotal - discountAmount;
+          document.getElementById("grandTotalSpan").textContent =
+            formatCurrency(grandTotal);
+
+          const paidAmount =
+            parseFloat(document.getElementById("paidAmount").value) || 0;
+          const remainingBalance = grandTotal - paidAmount;
+
+          // Always display the balance due initially
+          document.getElementById("closingDueSpan").textContent =
+            formatCurrency(remainingBalance);
+
+          if (enableEmiCheck.checked && remainingBalance > 0) {
+            // If EMI is on, hide the simple "Balance Due" and show EMI details
+            emiDetails.classList.remove("d-none");
+            closingDueWrapper.classList.add("d-none");
+            emiScheduleContainer.classList.remove("d-none");
+            totalsColumn.classList.remove("ms-auto");
+            generateAndShowEmiSchedule(remainingBalance);
+          } else {
+            // If EMI is off, show the "Balance Due" and hide EMI details
+            emiDetails.classList.add("d-none");
+            closingDueWrapper.classList.remove("d-none");
+            emiScheduleContainer.classList.add("d-none");
+            totalsColumn.classList.add("ms-auto");
+            monthlyPaymentSpan.textContent = formatCurrency(0);
+          }
+        }
+
+        function generateAndShowEmiSchedule(principal) {
+          const installments = parseInt(emiInstallmentsInput.value) || 1;
+          const annualInterestRate = parseFloat(emiAnnualRateInput.value) || 0;
+
+          if (principal <= 0 || installments <= 0) {
+            emiScheduleTbody.innerHTML =
+              '<tr><td colspan="6" class="text-center">Awaiting valid loan amount...</td></tr>';
+            monthlyPaymentSpan.textContent = formatCurrency(0);
+            return;
+          }
+
+          const monthlyInterestRate = annualInterestRate / 100 / 12;
+          let monthlyPayment;
+
+          if (monthlyInterestRate > 0) {
+            const pow = Math.pow(1 + monthlyInterestRate, installments);
+            monthlyPayment =
+              (principal * (monthlyInterestRate * pow)) / (pow - 1);
+          } else {
+            monthlyPayment = principal / installments;
+          }
+          monthlyPaymentSpan.textContent = formatCurrency(monthlyPayment);
+
+          let scheduleHtml = "";
+          let balance = principal;
+          const startDate = new Date(
+            document.getElementById("invoiceDate").value + "T00:00:00"
+          );
+
+          for (let i = 1; i <= installments; i++) {
+            const interestForMonth = balance * monthlyInterestRate;
+            const principalForMonth = monthlyPayment - interestForMonth;
+            balance -= principalForMonth;
+
+            if (i === installments && balance < 1 && balance > -1) {
+              balance = 0;
             }
 
-            function updateAllCalculations() {
-                let subtotal = 0;
-                tbody.querySelectorAll("tr").forEach(row => {
-                    const qty = parseFloat(row.querySelector(".item-qty").value) || 0;
-                    const price = parseFloat(row.querySelector(".item-price").value) || 0;
-                    const total = qty * price;
-                    row.querySelector(".item-total").textContent = formatCurrency(total);
-                    subtotal += total;
-                });
-                document.getElementById("subtotalSpan").textContent = formatCurrency(subtotal);
+            const paymentDate = new Date(startDate);
+            paymentDate.setMonth(startDate.getMonth() + i);
 
-                const discountInput = document.getElementById("discountInput").value;
-                let discountAmount = 0;
-                if (discountInput.includes("%")) {
-                    const percentage = parseFloat(discountInput.replace(/[^0-9.]/g, '')) || 0;
-                    discountAmount = (percentage / 100) * subtotal;
-                } else {
-                    discountAmount = parseFloat(discountInput) || 0;
-                }
-
-                const grandTotal = subtotal - discountAmount;
-                document.getElementById("grandTotalSpan").textContent = formatCurrency(grandTotal);
-
-                const paidAmount = parseFloat(document.getElementById("paidAmount").value) || 0;
-                const remainingBalance = grandTotal - paidAmount;
-
-                // Always display the balance due initially
-                document.getElementById("closingDueSpan").textContent = formatCurrency(remainingBalance);
-
-                if (enableEmiCheck.checked && remainingBalance > 0) {
-                    // If EMI is on, hide the simple "Balance Due" and show EMI details
-                    emiDetails.classList.remove("d-none");
-                    closingDueWrapper.classList.add("d-none");
-                    emiScheduleContainer.classList.remove("d-none");
-                    totalsColumn.classList.remove('ms-auto');
-                    generateAndShowEmiSchedule(remainingBalance);
-                } else {
-                    // If EMI is off, show the "Balance Due" and hide EMI details
-                    emiDetails.classList.add("d-none");
-                    closingDueWrapper.classList.remove("d-none");
-                    emiScheduleContainer.classList.add("d-none");
-                    totalsColumn.classList.add('ms-auto');
-                    monthlyPaymentSpan.textContent = formatCurrency(0);
-                }
-            }
-
-            function generateAndShowEmiSchedule(principal) {
-                const installments = parseInt(emiInstallmentsInput.value) || 1;
-                const annualInterestRate = parseFloat(emiAnnualRateInput.value) || 0;
-
-                if (principal <= 0 || installments <= 0) {
-                    emiScheduleTbody.innerHTML = '<tr><td colspan="6" class="text-center">Awaiting valid loan amount...</td></tr>';
-                    monthlyPaymentSpan.textContent = formatCurrency(0);
-                    return;
-                }
-
-                const monthlyInterestRate = annualInterestRate / 100 / 12;
-                let monthlyPayment;
-
-                if (monthlyInterestRate > 0) {
-                    const pow = Math.pow(1 + monthlyInterestRate, installments);
-                    monthlyPayment = principal * (monthlyInterestRate * pow) / (pow - 1);
-                } else {
-                    monthlyPayment = principal / installments;
-                }
-                monthlyPaymentSpan.textContent = formatCurrency(monthlyPayment);
-
-                let scheduleHtml = '';
-                let balance = principal;
-                const startDate = new Date(document.getElementById('invoiceDate').value + 'T00:00:00');
-
-                for (let i = 1; i <= installments; i++) {
-                    const interestForMonth = balance * monthlyInterestRate;
-                    const principalForMonth = monthlyPayment - interestForMonth;
-                    balance -= principalForMonth;
-
-                    if (i === installments && balance < 1 && balance > -1) {
-                        balance = 0;
-                    }
-
-                    const paymentDate = new Date(startDate);
-                    paymentDate.setMonth(startDate.getMonth() + i);
-
-                    scheduleHtml += `
+            scheduleHtml += `
                         <tr>
                             <td>${i}</td>
-                            <td>${paymentDate.toLocaleDateString('en-GB')}</td>
-                            <td class="text-end">${formatCurrency(monthlyPayment)}</td>
-                            <td class="text-end">${formatCurrency(principalForMonth)}</td>
-                            <td class="text-end">${formatCurrency(interestForMonth)}</td>
-                            <td class="text-end fw-bold">${formatCurrency(balance)}</td>
+                            <td>${paymentDate.toLocaleDateString("en-GB")}</td>
+                            <td class="text-end">${formatCurrency(
+                              monthlyPayment
+                            )}</td>
+                            <td class="text-end">${formatCurrency(
+                              principalForMonth
+                            )}</td>
+                            <td class="text-end">${formatCurrency(
+                              interestForMonth
+                            )}</td>
+                            <td class="text-end fw-bold">${formatCurrency(
+                              balance
+                            )}</td>
                         </tr>`;
-                }
-                emiScheduleTbody.innerHTML = scheduleHtml;
+          }
+          emiScheduleTbody.innerHTML = scheduleHtml;
+        }
+
+        document
+          .getElementById("saveNewCustomerBtn")
+          .addEventListener("click", function () {
+            const name = document.getElementById("newCustomerName").value;
+            const contact = document.getElementById("newCustomerContact").value;
+            if (!name || !contact) {
+              alert("Customer Name and Contact are required.");
+              return;
             }
+            const customerInfo = `${name} | ${contact}`;
+            document.getElementById("customerName").value = customerInfo;
+            const dataList = document.getElementById("customer-list");
+            if (
+              !Array.from(dataList.options).some(
+                (opt) => opt.value === customerInfo
+              )
+            ) {
+              dataList.insertAdjacentHTML(
+                "beforeend",
+                `<option value="${customerInfo}">`
+              );
+            }
+            document.getElementById("customerForm").reset();
+            customerModal.hide();
+          });
 
-            document.getElementById('saveNewCustomerBtn').addEventListener('click', function () {
-                const name = document.getElementById('newCustomerName').value;
-                const contact = document.getElementById('newCustomerContact').value;
-                if (!name || !contact) { alert('Customer Name and Contact are required.'); return; }
-                const customerInfo = `${name} | ${contact}`;
-                document.getElementById('customerName').value = customerInfo;
-                const dataList = document.getElementById('customer-list');
-                if (!Array.from(dataList.options).some(opt => opt.value === customerInfo)) {
-                    dataList.insertAdjacentHTML('beforeend', `<option value="${customerInfo}">`);
-                }
-                document.getElementById('customerForm').reset();
-                customerModal.hide();
-            });
-
-            addItemBtn.addEventListener("click", () => {
-                const newRowHtml = `
+        addItemBtn.addEventListener("click", () => {
+          const newRowHtml = `
                     <tr>
                         <td><input type="text" class="form-control item-selector" placeholder="Select or type product" list="product-list"><datalist id="product-list"><option data-price="25800" data-stock="14" value="43E40Z|SMART TV|VISION"></option><option data-price="34140" data-stock="5" value="WFB-2E0-GDEL-SC|REFRIGERATOR|WALTON"></option><option data-price="1760" data-stock="56" value="COMFORT|CEILING FAN|BORAK"></option></datalist></td>
                         <td><input type="text" class="form-control" placeholder="Ref..."></td>
@@ -487,52 +757,67 @@
                         <td class="text-end align-middle fw-bold item-total">৳ 0.00</td>
                         <td class="text-center align-middle"><button class="btn btn-sm btn-danger delete-row-btn"><i class="fa fa-trash"></i></button></td>
                     </tr>`;
-                tbody.insertAdjacentHTML("beforeend", newRowHtml);
-            });
-
-            tbody.addEventListener("input", e => {
-                const target = e.target;
-                if (target.classList.contains("item-selector")) {
-                    const selectedValue = target.value;
-                    const row = target.closest("tr");
-                    const priceInput = row.querySelector(".item-price");
-                    const stockInput = row.querySelector(".item-stock");
-                    const option = Array.from(target.nextElementSibling.options).find(opt => opt.value === selectedValue);
-                    priceInput.value = option ? option.dataset.price || 0 : 0;
-                    stockInput.value = option ? option.dataset.stock || "-" : "-";
-                }
-                updateAllCalculations();
-            });
-
-            tbody.addEventListener("click", e => {
-                if (e.target.closest(".delete-row-btn")) {
-                    e.target.closest("tr").remove();
-                    updateAllCalculations();
-                }
-            });
-
-            allCalculationInputs.forEach(input => {
-                input.addEventListener(input.type === 'checkbox' ? 'change' : 'input', updateAllCalculations);
-            });
-
-            document.getElementById("finalizeBtn").addEventListener("click", () => {
-                const isEmiEnabled = document.getElementById("enableEmiCheck").checked;
-                const balanceDue = parseFloat(document.getElementById("closingDueSpan").textContent.replace(/[^0-9.-]+/g, ""));
-
-                if (!isEmiEnabled && balanceDue > 0) {
-                    alert(`Invoice Finalized with a BALANCE DUE of ${formatCurrency(balanceDue)}! This will be saved to the customer's account.`);
-                } else if (isEmiEnabled) {
-                    alert('Invoice Finalized with an EMI Plan! The schedule will be saved.');
-                } else {
-                    alert('Invoice Finalized and fully paid!');
-                }
-                // In a real app, this would save all data to the database.
-            });
-
-            addItemBtn.click();
-            updateAllCalculations();
+          tbody.insertAdjacentHTML("beforeend", newRowHtml);
         });
-    </script>
-</body>
 
+        tbody.addEventListener("input", (e) => {
+          const target = e.target;
+          if (target.classList.contains("item-selector")) {
+            const selectedValue = target.value;
+            const row = target.closest("tr");
+            const priceInput = row.querySelector(".item-price");
+            const stockInput = row.querySelector(".item-stock");
+            const option = Array.from(target.nextElementSibling.options).find(
+              (opt) => opt.value === selectedValue
+            );
+            priceInput.value = option ? option.dataset.price || 0 : 0;
+            stockInput.value = option ? option.dataset.stock || "-" : "-";
+          }
+          updateAllCalculations();
+        });
+
+        tbody.addEventListener("click", (e) => {
+          if (e.target.closest(".delete-row-btn")) {
+            e.target.closest("tr").remove();
+            updateAllCalculations();
+          }
+        });
+
+        allCalculationInputs.forEach((input) => {
+          input.addEventListener(
+            input.type === "checkbox" ? "change" : "input",
+            updateAllCalculations
+          );
+        });
+
+        document.getElementById("finalizeBtn").addEventListener("click", () => {
+          const isEmiEnabled =
+            document.getElementById("enableEmiCheck").checked;
+          const balanceDue = parseFloat(
+            document
+              .getElementById("closingDueSpan")
+              .textContent.replace(/[^0-9.-]+/g, "")
+          );
+
+          if (!isEmiEnabled && balanceDue > 0) {
+            alert(
+              `Invoice Finalized with a BALANCE DUE of ${formatCurrency(
+                balanceDue
+              )}! This will be saved to the customer's account.`
+            );
+          } else if (isEmiEnabled) {
+            alert(
+              "Invoice Finalized with an EMI Plan! The schedule will be saved."
+            );
+          } else {
+            alert("Invoice Finalized and fully paid!");
+          }
+          // In a real app, this would save all data to the database.
+        });
+
+        addItemBtn.click();
+        updateAllCalculations();
+      });
+    </script>
+  </body>
 </html>
